@@ -12,7 +12,6 @@ import { TaskSetComponent } from './components/task-set/task-set.component';
 import { SingleTaskComponent } from './components/single-task/single-task.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 @NgModule({
   declarations: [
     HeaderComponent,

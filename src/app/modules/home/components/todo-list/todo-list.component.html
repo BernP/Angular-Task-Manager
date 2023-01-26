@@ -1,6 +1,6 @@
 <div class="container" style="width: 100%; height: 100%;">
-    <app-lateral-menu></app-lateral-menu>
-    <app-task-set [tasks]="TasksList"></app-task-set>   
+    <app-lateral-menu #filter [tasks]="TasksList"></app-lateral-menu>
+    <app-task-set [tasks]="TasksList" [filter]="filter.filterType" [filtredTasks]="filter.filtredTasks"></app-task-set>   
 </div>
 
 

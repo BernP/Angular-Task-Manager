@@ -25,9 +25,9 @@
             </button>
             <div class="collapse show" id="collapseExample">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-dark rounded">All</a></li>
-                <li><a href="#" class="link-dark rounded">Today</a></li>
-                <li><a href="#" class="link-dark rounded">Calendar</a></li>
+                <li><a (click)="SelectFilterType('taskDate', 'All')" href="#" class="link-dark rounded">All</a></li>
+                <li><a (click)="SelectFilterType('taskDate', 'Today')" href="#" class="link-dark rounded">Today</a></li>
+                <li><a (click)="SelectFilterType('taskDate', 'Calendar')" href="#" class="link-dark rounded">Calendar</a></li>
                 
               </ul>
             </div>
@@ -39,12 +39,12 @@
             <div class="collapse  show" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li *ngFor="let item of categories; let i = index" style="background-color: whitesmoke;">
-                  <a href="#" class="link-dark rounded">{{item.name}}</a>
+                  <a (click)="SelectFilterType('taskCategory', item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
                   <button (click)="deleteCategory(i, 1)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>
                 </li>
-                <li><a href="#" (click)="TypeOfAdd(1)" data-bs-toggle="modal" data-bs-target="#modal-id" class="link-dark rounded">(+) Add category</a></li>
+                <li><a href="#" (click)="TypeOfAdd(1)" data-bs-toggle="modal" data-bs-target="#modal-id" class="link-dark rounded"><div><i class="fa fa-plus-circle" aria-hidden="true"></i> Add category</div></a></li>
               </ul>
             </div>
           </li>
@@ -55,12 +55,12 @@
             <div class="collapse show" id="orders-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li *ngFor="let item of nonTaskCategories; let j = index" style="background-color: whitesmoke;">
-                  <a href="#" class="link-dark rounded">{{item.name}}</a>
+                  <a (click)="SelectFilterType('data', item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
                   <button (click)="deleteCategory(j, 2)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>
                 </li>
-                <li><a href="#" (click)="TypeOfAdd(2)" data-bs-toggle="modal" data-bs-target="#modal-id" class="link-dark rounded">(+) Add category</a></li>
+                <li><a href="#" (click)="TypeOfAdd(2)" data-bs-toggle="modal" data-bs-target="#modal-id" class="link-dark rounded"><div><i class="fa fa-plus-circle" aria-hidden="true"></i> Add category</div></a></li>
               </ul>
             </div>
           </li>

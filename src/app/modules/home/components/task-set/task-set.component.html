@@ -1,1 +1,62 @@
-<p>task-set works!</p>
+<h3>{{filter.category}}</h3>
+<a href="#" data-bs-toggle="modal" data-bs-target="#modal-task" class="link-dark rounded"><div><i class="fa fa-plus-circle" aria-hidden="true"></i> Add task</div></a>
+
+
+<div *ngIf="true">
+    
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li *ngFor="let item of filtredTasks; let j = index" style="background-color: #f5f5f5;">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" attr.data-bs-target="{{'#'+item.taskName+ j+'QwErT'}}" aria-expanded="false">
+                    <b>{{item.taskName}}</b>
+                </button>
+                <div class="collapse" id="{{item.taskName+ j+'QwErT'}}">
+                    <p>{{item.taskDescription}}</p>
+                </div>
+            </li>
+
+        </ul>
+
+
+    
+    
+</div>
+
+
+
+
+
+
+
+
+<!-- ADD MODAL -->
+<div class="modal fade" id="modal-task" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create a new Task</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body container">
+                <div class="container mb-3 text-start mt-2 h-100">
+                    <div><label for="output-content" id="output-content-label">Task name: </label> </div>
+                    <input [(ngModel)]="taskName" #newCategoryInput value="{{taskName}}" type="text">
+                </div>
+                <div class="container mb-3 text-start mt-2 h-100">
+                    <div><label for="output-content" id="output-content-label">Task description: </label> </div>
+                    <input [(ngModel)]="taskDescription" #newCategoryInput value="{{taskDescription}}" type="text">
+                </div>
+                <div class="container mb-3 text-start mt-2 h-100">
+                    <p> Date</p>
+                </div>
+                <div class="container mb-3 text-start mt-2 h-100">
+                    <div><label for="output-content" id="output-content-label">Task category: </label> </div>
+                    <input [(ngModel)]="taskCategory" #newCategoryInput value="{{taskCategory}}" type="text">
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="AddTask(); reloadInitialPage()" data-bs-dismiss="modal">(+) Add</button>
+            </div>
+        </div>
+    </div>
+  </div>

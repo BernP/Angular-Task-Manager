@@ -4,7 +4,8 @@ export interface TaskList {
 }
 
 export interface Tasks {
-    task: string, 
+    taskName: string,
+    taskDescription: string, 
     date: Date,
     category: string
 }
