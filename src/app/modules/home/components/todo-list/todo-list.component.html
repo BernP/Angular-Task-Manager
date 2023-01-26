@@ -1,0 +1,26 @@
+<div class="container" style="width: 100%; height: 100%;">
+    <app-lateral-menu></app-lateral-menu>
+    <app-task-set [tasks]="TasksList"></app-task-set>   
+</div>
+
+
+<!--
+<section *ngIf="taskList.length>0; else CleanList" class="container">
+    <ul>
+        <li *ngFor="let item of taskList; let i = index">
+            <input type="checkbox" [(ngModel)]="item.checked">
+            <input type="text" [(ngModel)]="item.task">
+            <button (click)="deleteItem(i)" class="delete-btn">
+                [delete]
+            </button>
+        </li>
+    </ul>
+</section>
+<ng-template #CleanList>
+    <img src="https://cdn3.iconfinder.com/data/icons/network-12/64/_Webpage_Sad-512.png">
+    <p>You don't have any task!</p>
+</ng-template>
+<app-todo-input-add-itens (emitItem)="setEmit($event)"></app-todo-input-add-itens>
+<app-todo-button-delete-select (click)="deleteSelected()"></app-todo-button-delete-select>
+<app-todo-button-delete-all (click)="deleteAll()"></app-todo-button-delete-all>
+-->
