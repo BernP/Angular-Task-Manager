@@ -86,6 +86,7 @@ export class LateralMenuComponent implements OnInit {
 
   public FilterTask(){
     let aux: Array<Tasks> = [];
+    if(this.filterType.category == "All"){this.filtredTasks= this.tasks;return;} 
     
     for(let i = 0; i < this.tasks.length; i++)
     {
@@ -100,6 +101,5 @@ export class LateralMenuComponent implements OnInit {
       }
     }
     this.filtredTasks= aux;
-    if(this.filterType.category == "All"){this.filtredTasks= aux; return;} 
   }
 }

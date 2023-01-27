@@ -1,5 +1,5 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-<section class="container left-menu-color" style="width: 30%;">
+<section class="container left-menu-color">
     <h2>Menu</h2>
     <div class="input-group" style="width: 100%;">
         <div class="form-outline">
@@ -25,7 +25,7 @@
             </button>
             <div class="collapse show" id="collapseExample">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a (click)="SelectFilterType('taskDate', 'All')" href="#" class="link-dark rounded">All</a></li>
+                <li><a (click)="SelectFilterType('taskCategory', 'All')" href="#" class="link-dark rounded">All</a></li>
                 <li><a (click)="SelectFilterType('taskDate', 'Today')" href="#" class="link-dark rounded">Today</a></li>
                 <li><a (click)="SelectFilterType('taskDate', 'Calendar')" href="#" class="link-dark rounded">Calendar</a></li>
                 
@@ -97,7 +97,7 @@
               
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="AddCategory()">(+) Add</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="AddCategory()">(+) Add</button>
           </div>
       </div>
   </div>

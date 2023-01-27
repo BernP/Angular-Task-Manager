@@ -6,10 +6,13 @@
     
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li *ngFor="let item of filtredTasks; let j = index" style="background-color: #f5f5f5;">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" attr.data-bs-target="{{'#'+item.taskName+ j+'QwErT'}}" aria-expanded="false">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" attr.data-bs-target="{{'#'+(item.taskName).toString()+ j+'QwErT'}}" aria-expanded="false">
                     <b>{{item.taskName}}</b>
                 </button>
-                <div class="collapse" id="{{item.taskName+ j+'QwErT'}}">
+                <div class="collapse" id="{{(item.taskName).toString()+ j+'QwErT'}}">
+                    <div style="display: flex; flex-grow: grow">
+                        <h6>{{"End date:"+item.date+" - Category: "+item.category}}</h6>
+                    </div>
                     <p>{{item.taskDescription}}</p>
                 </div>
             </li>
@@ -39,18 +42,23 @@
             <div class="modal-body container">
                 <div class="container mb-3 text-start mt-2 h-100">
                     <div><label for="output-content" id="output-content-label">Task name: </label> </div>
-                    <input [(ngModel)]="taskName" #newCategoryInput value="{{taskName}}" type="text">
+                    <input class="form-control" [(ngModel)]="taskName" #newCategoryInput value="{{taskName}}" type="text">
                 </div>
                 <div class="container mb-3 text-start mt-2 h-100">
                     <div><label for="output-content" id="output-content-label">Task description: </label> </div>
-                    <input [(ngModel)]="taskDescription" #newCategoryInput value="{{taskDescription}}" type="text">
+                    <textarea class="form-control" [(ngModel)]="taskDescription" #newCategoryInput value="{{taskDescription}}" type="text"></textarea>
                 </div>
                 <div class="container mb-3 text-start mt-2 h-100">
-                    <p> Date</p>
+                    <label for="startDate">End date</label>
+                    <input [(ngModel)]="date" id="startDate" class="form-control" type="date" />
                 </div>
                 <div class="container mb-3 text-start mt-2 h-100">
                     <div><label for="output-content" id="output-content-label">Task category: </label> </div>
-                    <input [(ngModel)]="taskCategory" #newCategoryInput value="{{taskCategory}}" type="text">
+                    <select [(ngModel)]="taskCategory" class="form-select form-select-sm" multiple aria-label="multiple select">
+                        <option>No category</option>
+                        <option *ngFor="let item of taskCategories; let k = index" [ngValue]="item.name">{{item.name}}<option>
+                    </select>
+                    <!--<input [(ngModel)]="taskCategory" #newCategoryInput value="{{taskCategory}}" type="text">-->
                 </div>
                 
             </div>

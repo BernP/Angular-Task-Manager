@@ -11,7 +11,9 @@ export class TaskSetComponent {
 
   @Input() tasks: Array<Tasks> = [];
   @Input() filter: any;
+  @Input() taskCategories: any;
   @Input() filtredTasks: Array<Tasks> = [];
+
 
   //public filtredTasks: Array<Tasks> = [];
   public date: Date = new Date();
@@ -34,7 +36,7 @@ export class TaskSetComponent {
   */
   public AddTask(){
 
-      this.tasks.push({taskName: this.taskName, taskDescription: this.taskDescription, date: new Date(), category: this.taskCategory})
+      this.tasks.push({taskName: this.taskName, taskDescription: this.taskDescription, date: this.date, category: this.taskCategory})
       console.log(this.tasks);
     }
   public reloadInitialPage()
