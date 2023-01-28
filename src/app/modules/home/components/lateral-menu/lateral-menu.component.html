@@ -1,6 +1,6 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-<section class="container left-menu-color">
-    <h2>Menu</h2>
+<section class="container left-menu-color" style="padding-top: 10px;">
+    <h3 style="font-family: Nunito;">Menu</h3>
     <div class="input-group" style="width: 100%;">
         <div class="form-outline">
           <input [(ngModel)]="whatToSearchFor" type="search" id="form1" class="form-control" style="border: 1px; border-color: black; background-color: white;" />
@@ -14,17 +14,13 @@
 
 
     <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-          <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-          <span class="fs-5 fw-semibold">Collapsible</span>
-        </a>
         <ul class="list-unstyled ps-0">
           <li class="mb-1">
             <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
               Tasks - Dates
             </button>
             <div class="collapse show" id="collapseExample">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
                 <li><a (click)="SelectFilterType('taskCategory', 'Tasks / Dates / All dates')" href="#" class="link-dark rounded">All</a></li>
                 <li><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Today')" href="#" class="link-dark rounded">Today</a></li>
                 <li><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Over Timed')" href="#" class="link-dark rounded">Over timed</a></li>
@@ -35,12 +31,12 @@
             </div>
           </li>
           <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+            <button class="btn btn-toggle align-items-center rounded collapsed btn-menu-color" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
               Task - Categories
             </button>
             <div class="collapse  show" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li *ngFor="let item of categories; let i = index" style="background-color: whitesmoke;">
+                <li *ngFor="let item of categories; let i = index">
                   <a (click)="SelectFilterType('taskCategory', 'Tasks / Categories / '+item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
                   <button (click)="deleteCategory(i, 1)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -56,7 +52,7 @@
             </button>
             <div class="collapse show" id="orders-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li *ngFor="let item of nonTaskCategories; let j = index" style="background-color: whitesmoke;">
+                <li *ngFor="let item of nonTaskCategories; let j = index">
                   <a (click)="SelectFilterType('data', 'Data / '+item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
                   <button (click)="deleteCategory(j, 2)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -84,17 +80,17 @@
 
 
 
-<div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="result-modal-label" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h3>Create a new {{what}}</h3>
+<div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="result-modal-label" aria-hidden="true" >
+  <div class="modal-dialog" >
+      <div class="modal-content" style="background-color: #E3F6FF;">
+          <div class="modal-header" style="border-bottom: 1px solid black;">
+              <h3>New {{what}}</h3>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body container">
               <div class="container mb-3 text-start mt-2 h-100">
-                  <div><label for="output-content" id="output-content-label">New {{what}} name: </label> </div>
-                  <input [(ngModel)]="newItemToAdd" #newCategoryInput value="{{newItemToAdd}}" type="text">
+                  <div><label for="output-content" id="output-content-label">Category's name: </label> </div>
+                  <input class="form-control" [(ngModel)]="newItemToAdd" #newCategoryInput value="{{newItemToAdd}}" type="text">
               </div>
               
           </div>

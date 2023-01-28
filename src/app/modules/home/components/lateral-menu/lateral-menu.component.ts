@@ -192,6 +192,7 @@ export class LateralMenuComponent{
       }
     }
     this.filtredTasks = searchResult;
+    this.whatToSearchFor = '';
   }
 
 

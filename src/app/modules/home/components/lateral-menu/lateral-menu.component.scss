@@ -105,9 +105,17 @@ body {
   .lh-tight { line-height: 1.25; }
   
 
-
-
+  .delete-btn:hover{
+    background-color: #5da4c2;
+  }
+  .delete-btn{
+    background-color: #8DCBE6;
+  }
 
   .left-menu-color{
-    background-color: rgb(153, 152, 152);
+    background-color: #8DCBE6;
+  }
+
+  .btn-menu-color{
+    background-color: #97d3ed;
   }

@@ -1,4 +1,21 @@
+@font-face {
+    font-family: Nunito;
+    src: url(../../../../../assets/static/Nunito-Medium.ttf) format('truetype');
+}
+
 .set-component-body{
-    background-color: aqua;
+    background-color: #7ab8aa;
     height: 100%;
+    
+}
+.font-nunito{
+    font-family: Nunito;
+}
+
+li{
+    background-color:  #a4efdf;
+}
+.li-content{
+    background-color: #9DF1DF; 
+    padding: 5px;
 }

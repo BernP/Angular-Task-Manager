@@ -4,22 +4,21 @@
     margin: 0;
     padding: 0;
     font-weight: 400;
+    
 
 
 }
 body{
-    background-color: $secondary-color;
+    background-color: #E3F6FF;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 ul{
     list-style: none;
 }
 .delete-btn{
-    background-color: white;
     border: 0;
 }
 .delete-btn:hover{
-    background-color: rgb(207, 207, 207);
     cursor:pointer;
 }
 .list{

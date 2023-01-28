@@ -37,12 +37,13 @@ export class TaskSetComponent {
   {
 
       this.tasks.push({taskName: this.taskName, taskDescription: this.taskDescription, date: this.date, category: this.taskCategory, hashId: this.CreateHashId(this.taskName)})
-      console.log(this.tasks);
+
   }
 
   public AddData()
   {
     this.data.push({dataName: this.dataName, dataInfo: this.dataInfo, category:  this.dataCategory, hashId: this.CreateHashId(this.dataName)});
+
   }
 
   public reloadInitialPage()

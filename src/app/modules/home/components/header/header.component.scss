@@ -1,11 +1,16 @@
 @import '../../../../../dist/scss/variables.scss';
 
-h1{
+@font-face {
+    font-family: nunito;
+    src: url(../../../../../assets/static/Nunito-LightItalic.ttf);
+}
+
+.header-style{
     width: 100%;
     padding: 15px 0;
+    font-family: Nunito;
 
     text-align: center;
-    font-size: 18px;
     color: $secondary-text-color;
-    background-color: $tertiary-background-color;
+    background-color: #FFEA20;
 }
