@@ -7,10 +7,13 @@ export interface Tasks {
     taskName: string,
     taskDescription: string, 
     date: Date,
-    category: string
+    category: string,
+    hashId: string
 }
 
 export interface Data {
-    info: string, 
-    category: string
+    dataName: string,
+    dataInfo: string, 
+    category: string,
+    hashId: string
 }

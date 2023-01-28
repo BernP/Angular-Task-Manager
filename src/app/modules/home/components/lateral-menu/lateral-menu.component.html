@@ -3,10 +3,10 @@
     <h2>Menu</h2>
     <div class="input-group" style="width: 100%;">
         <div class="form-outline">
-          <input type="search" id="form1" class="form-control" style="border: 1px; border-color: black; background-color: white;" />
+          <input [(ngModel)]="whatToSearchFor" type="search" id="form1" class="form-control" style="border: 1px; border-color: black; background-color: white;" />
           <label class="form-label" for="form1">Search</label>
         </div>
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" (click)="Search(whatToSearchFor);">
             <i class="fa fa-search" aria-hidden="true"></i>
         </button>
     </div>
@@ -25,9 +25,11 @@
             </button>
             <div class="collapse show" id="collapseExample">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a (click)="SelectFilterType('taskCategory', 'All')" href="#" class="link-dark rounded">All</a></li>
-                <li><a (click)="SelectFilterType('taskDate', 'Today')" href="#" class="link-dark rounded">Today</a></li>
-                <li><a (click)="SelectFilterType('taskDate', 'Calendar')" href="#" class="link-dark rounded">Calendar</a></li>
+                <li><a (click)="SelectFilterType('taskCategory', 'Tasks / Dates / All dates')" href="#" class="link-dark rounded">All</a></li>
+                <li><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Today')" href="#" class="link-dark rounded">Today</a></li>
+                <li><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Over Timed')" href="#" class="link-dark rounded">Over timed</a></li>
+                <li><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Calendar')" href="#" class="link-dark rounded">Calendar</a></li>
+                
                 
               </ul>
             </div>
@@ -39,7 +41,7 @@
             <div class="collapse  show" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li *ngFor="let item of categories; let i = index" style="background-color: whitesmoke;">
-                  <a (click)="SelectFilterType('taskCategory', item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
+                  <a (click)="SelectFilterType('taskCategory', 'Tasks / Categories / '+item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
                   <button (click)="deleteCategory(i, 1)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>
@@ -55,7 +57,7 @@
             <div class="collapse show" id="orders-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li *ngFor="let item of nonTaskCategories; let j = index" style="background-color: whitesmoke;">
-                  <a (click)="SelectFilterType('data', item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
+                  <a (click)="SelectFilterType('data', 'Data / '+item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
                   <button (click)="deleteCategory(j, 2)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>

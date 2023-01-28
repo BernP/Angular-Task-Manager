@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TaskList, Tasks } from 'src/app/model/task-list';
+import { TaskList, Tasks, Data } from 'src/app/model/task-list';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,6 +9,7 @@ import { TaskList, Tasks } from 'src/app/model/task-list';
 export class TodoListComponent {
   public taskList: Array<TaskList>=[{task:"Novo", checked: true}];
   public TasksList: Array<Tasks>=[];
+  public DataList: Array<Data>=[];
 
   constructor(){}
   ngOnInit(): void{
