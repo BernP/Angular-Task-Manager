@@ -37,7 +37,7 @@
             <div class="collapse  show" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li *ngFor="let item of categories; let i = index">
-                  <a (click)="SelectFilterType('taskCategory', 'Tasks / Categories / '+item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
+                  <a (click)="SelectFilterType('taskCategory', 'Tasks / Categories / '+item.name)" href="#" class="link-dark rounded">{{item.name}}  ({{item.amount}})</a>
                   <button (click)="deleteCategory(i, 1)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>
@@ -53,7 +53,7 @@
             <div class="collapse show" id="orders-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li *ngFor="let item of nonTaskCategories; let j = index">
-                  <a (click)="SelectFilterType('data', 'Data / '+item.name)" href="#" class="link-dark rounded">{{item.name}}</a>
+                  <a (click)="SelectFilterType('data', 'Data / '+item.name)" href="#" class="link-dark rounded">{{item.name}} ({{item.amount}})</a>
                   <button (click)="deleteCategory(j, 2)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>

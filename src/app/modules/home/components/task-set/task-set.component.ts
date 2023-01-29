@@ -38,12 +38,28 @@ export class TaskSetComponent {
 
       this.tasks.push({taskName: this.taskName, taskDescription: this.taskDescription, date: this.date, category: this.taskCategory, hashId: this.CreateHashId(this.taskName)})
 
+      for(let i = 0; i < this.taskCategories.length; i++)
+      { 
+        if(this.taskCategory.includes(this.taskCategories[i].name))
+        {
+          this.taskCategories[i].amount++;
+          break;
+        }
+      }
   }
 
   public AddData()
   {
     this.data.push({dataName: this.dataName, dataInfo: this.dataInfo, category:  this.dataCategory, hashId: this.CreateHashId(this.dataName)});
 
+    for(let i = 0; i < this.dataCategories.length; i++)
+      { 
+        if(this.dataCategory.includes(this.dataCategories[i].name))
+        {
+          this.dataCategories[i].amount++;
+          break;
+        }
+      }
   }
 
   public reloadInitialPage()
@@ -68,9 +84,18 @@ export class TaskSetComponent {
       if((this.filtredTasks[i].hashId).localeCompare(taskIdToDelete) === 0)
       {
         this.filtredTasks.splice(i, 1);
-        return;
+        break;
       }
     }
+    for(let i = 0; i < this.taskCategories.length; i++)
+    { 
+      if(this.taskCategory.includes(this.taskCategories[i].name))
+      {
+        this.taskCategories[i].amount--;
+        break;
+      }
+    }
+    
   }
 
   public DeleteData(dataIdToDelete: string)
@@ -88,7 +113,15 @@ export class TaskSetComponent {
       if((this.filtredData[i].hashId).localeCompare(dataIdToDelete) === 0)
       {
         this.filtredData.splice(i, 1);
-        return;
+        break;
+      }
+    }
+    for(let i = 0; i < this.dataCategories.length; i++)
+    { 
+      if(this.dataCategory.includes(this.dataCategories[i].name))
+      {
+        this.dataCategories[i].amount--;
+        break;
       }
     }
   }

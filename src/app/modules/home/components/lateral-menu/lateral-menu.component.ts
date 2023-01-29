@@ -12,8 +12,8 @@ import { Tasks, Data } from 'src/app/model/task-list';
 export class LateralMenuComponent{
   @Input() tasks: Array<Tasks> = [];
   @Input() data: Array<Data> = [];
-  public categories:  Array<any> = [{name: 'Personal'}, {name: 'Work'}, {name: 'Studie'}];
-  public nonTaskCategories:  Array<any> = [{name: 'All'}, {name: 'Phone numbers'}, {name: 'Passwords tips'}];
+  public categories:  Array<any> = [{name: 'Personal', amount: 0}, {name: 'Work', amount: 0}, {name: 'Studie', amount: 0}];
+  public nonTaskCategories:  Array<any> = [{name: 'All', amount: 0}, {name: 'Phone numbers', amount: 0}, {name: 'Passwords tips', amount: 0}];
   public whatToSearchFor: string = "";
   public newItemToAdd: string = "";
   public whereAdd: number = 0;
@@ -49,6 +49,20 @@ export class LateralMenuComponent{
     }
     
   }
+
+  //==========================
+  //  Find occorences CATEGORY 
+  //==========================
+  public FindTaskAmount(choosenCat: string){
+    for(let i = 0; i < this.categories.length; i++)
+    {
+      if(choosenCat === this.categories[i].name)
+      {
+        return this.categories[i].amount.toString();
+      }
+    }
+  }
+
 
   //==========================
   //  DELETE CATEGORY IN MENU
@@ -91,10 +105,10 @@ export class LateralMenuComponent{
   public AddCategory(){
     if(this.whereAdd == 1)
     {
-      this.categories.push({name: this.newItemToAdd});
+      this.categories.push({name: this.newItemToAdd, amount: 0});
     }
     else{
-      this.nonTaskCategories.push({name: this.newItemToAdd});
+      this.nonTaskCategories.push({name: this.newItemToAdd, amount: 0});
     }
     
     this.newItemToAdd = "";
