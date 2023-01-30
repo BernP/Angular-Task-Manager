@@ -24,8 +24,8 @@
 li{
     margin-top: 8px;
     background-color:  #a4efdf;
-    border: #7ab8aa solid 3px;
-    border-radius: 3px;
+    border: #81d6c4 solid 2px;
+    border-radius: 4px;
 
 }
 .li-content{
@@ -38,4 +38,8 @@ li{
 }
 .caledar-font-size{
     font-size: 1.8vh;
+}
+
+.set-delete-btn{
+    background-color: #81d6c4; 
 }
