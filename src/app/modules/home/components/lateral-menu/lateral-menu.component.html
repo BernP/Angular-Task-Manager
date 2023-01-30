@@ -13,58 +13,65 @@
 
 
 
-    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+    <div class="pt-4 pb-3 bg-white" style="width: 100%;">
         <ul class="list-unstyled ps-0">
           <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Tasks - Dates
-            </button>
+            <a href="#" class="align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <div class=" lateral-menu-collapse-btn font-nunito">
+                Tasks - Dates
+              </div>
+            </a>
             <div class="collapse show" id="collapseExample">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                <li><a (click)="SelectFilterType('taskCategory', 'Tasks / Dates / All dates')" href="#" class="link-dark rounded">All</a></li>
-                <li><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Today')" href="#" class="link-dark rounded">Today</a></li>
-                <li><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Over Timed')" href="#" class="link-dark rounded">Over timed</a></li>
-                <li><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Calendar')" href="#" class="link-dark rounded">Calendar</a></li>
+              <ul class="ul-menu list-unstyled fw-normal pb-1 small ">
+                <li class="li-menu"><a (click)="SelectFilterType('taskCategory', 'Tasks / Dates / All dates')" href="#" class="link-dark rounded li-menu-a">All</a></li>
+                <li class="li-menu"><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Today')" href="#" class="link-dark rounded li-menu-a">Today</a></li>
+                <li class="li-menu"><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Over Timed')" href="#" class="link-dark rounded  li-menu-a">Over timed</a></li>
+                <li class="li-menu"><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Calendar')" href="#" class="link-dark rounded  li-menu-a">Calendar</a></li>
                 
                 
               </ul>
             </div>
           </li>
           <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed btn-menu-color" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-              Task - Categories
-            </button>
+            <a href="#" class="align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+              <div class=" lateral-menu-collapse-btn font-nunito">
+                Task - Categories
+              </div>
+              
+            </a>
             <div class="collapse  show" id="dashboard-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li *ngFor="let item of categories; let i = index">
-                  <a (click)="SelectFilterType('taskCategory', 'Tasks / Categories / '+item.name)" href="#" class="link-dark rounded">{{item.name}}  ({{item.amount}})</a>
+              <ul class="ul-menu list-unstyled fw-normal pb-1 small">
+                <li  class="li-menu" *ngFor="let item of categories; let i = index">
+                  <a (click)="SelectFilterType('taskCategory', 'Tasks / Categories / '+item.name)" href="#" class="link-dark rounded li-menu-a">{{item.name}}  ({{item.amount}})</a>
                   <button (click)="deleteCategory(i, 1)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>
                 </li>
-                <li><a href="#" (click)="TypeOfAdd(1)" data-bs-toggle="modal" data-bs-target="#modal-id" class="link-dark rounded"><div><i class="fa fa-plus-circle" aria-hidden="true"></i> Add category</div></a></li>
+                <li><a href="#" (click)="TypeOfAdd(1)" data-bs-toggle="modal" data-bs-target="#modal-id" ><div class="link-dark rounded li-menu-a"><i class="fa fa-plus-circle" aria-hidden="true"></i> New category</div></a></li>
               </ul>
             </div>
           </li>
           <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-              Data (non task)
-            </button>
+            <a href="#" class="align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+              <div class=" lateral-menu-collapse-btn font-nunito">
+                Data (non task)
+              </div>
+            </a>
             <div class="collapse show" id="orders-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li *ngFor="let item of nonTaskCategories; let j = index">
-                  <a (click)="SelectFilterType('data', 'Data / '+item.name)" href="#" class="link-dark rounded">{{item.name}} ({{item.amount}})</a>
+              <ul class="ul-menu list-unstyled fw-normal pb-1 small">
+                <li class="li-menu" *ngFor="let item of nonTaskCategories; let j = index">
+                  <a (click)="SelectFilterType('data', 'Data / '+item.name)" href="#" class="link-dark rounded li-menu-a">{{item.name}} ({{item.amount}})</a>
                   <button (click)="deleteCategory(j, 2)" class="delete-btn">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                   </button>
                 </li>
-                <li><a href="#" (click)="TypeOfAdd(2)" data-bs-toggle="modal" data-bs-target="#modal-id" class="link-dark rounded"><div><i class="fa fa-plus-circle" aria-hidden="true"></i> Add category</div></a></li>
+                <li class="li-menu "><a href="#" (click)="TypeOfAdd(2)" data-bs-toggle="modal" data-bs-target="#modal-id" ><div class="link-dark rounded li-menu-a"><i class="fa fa-plus-circle" aria-hidden="true"></i> New category</div></a></li>
               </ul>
             </div>
           </li>
           <li class="border-top my-3"></li>
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+          <li class="mb-1" style="margin-top: 30px;">
+            <button class="btn btn-toggle align-items-center rounded collapsed account-btn" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
               Account
             </button>
             <div class="collapse" id="account-collapse">

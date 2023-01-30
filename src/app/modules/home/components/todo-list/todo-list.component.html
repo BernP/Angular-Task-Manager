@@ -1,8 +1,8 @@
 <div class="container" style="width: 100%; height: 100%; display: flex; flex-grow: grow">
-    <div style="width: 30%; height: 100%;">
+    <div style="width: 25%; height: 100%;">
         <app-lateral-menu #filter [tasks]="TasksList" [data]="DataList"></app-lateral-menu>
     </div>
-    <div style="width: 70%; height: 100%; margin-left: 15px;">
+    <div style="width: 75%; height: 100%; margin-left: 15px;">
         <app-task-set [tasks]="TasksList" [dataCategories]="filter.nonTaskCategories" [data]="DataList" [filter]="filter.filterType" [filtredData]="filter.filtredData" [filtredTasks]="filter.filtredTasks" [taskCategories]="filter.categories"></app-task-set>
     </div>
        

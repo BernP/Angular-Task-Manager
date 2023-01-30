@@ -207,6 +207,8 @@ export class LateralMenuComponent{
     }
     this.filtredTasks = searchResult;
     this.whatToSearchFor = '';
+    this.filterType.category = "Search results";
+    //this.filterType.type = "";
   }
 
 
