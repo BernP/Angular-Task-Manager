@@ -145,11 +145,13 @@ export class TaskSetComponent {
     else if(taskDate > today)
     {
       var daysToEnd =  Math.floor((taskDate.getTime() - today.getTime()) / 1000 / 60 / 60 / 24)+1;
-      return "You have "+daysToEnd+" day(s) to complete this task!";
+      var singleDate = daysToEnd === 1 ? "":"s";
+      return "You have "+daysToEnd+" day" +singleDate+ " left to complete this task!";
     }
     else{
-      var daysToEnd =  Math.floor((today.getTime() - taskDate.getTime()) / 1000 / 60 / 60 / 24) +1;
-      return "The 'time to end' this task passed "+daysToEnd+" day(s) ago!";
+      var daysToEnd =  Math.floor((today.getTime() - taskDate.getTime()) / 1000 / 60 / 60 / 24);
+      var singleDate = daysToEnd === 1 ? "":"s";
+      return "The end line ended "+daysToEnd+" day"+ singleDate +" ago!";
     }
 
   }

@@ -36,15 +36,15 @@
                         
                     </button>
                     <div class="collapse li-content" id="{{'a'+j}}">
-                        <div class="d-inline-flex align-items-center font-nunito-light">
+                        <div class="font-nunito-light align-items-center d-inline-flex">
+                            <div style=" margin-right: 25px;">{{TimeToEndTask(item.date)}}</div>
+
                             
-                            <div class="d-inline-flex align-items-center font-nunito-light">
-                                <p>{{TimeToEndTask(item.date)}}</p>
-                            </div>
-                            <button type="button" (click)="deleteTask(item.hashId)" class="delete-btn set-delete-btn d-inline-flex align-items-center">
-                                <i class="fa fa-trash-o align-items-center" aria-hidden="true" style="align-self: start;"></i>
-                                <p class="font-nunito-light"> Delete </p>
-                            </button>
+                            <a href="#" type="button" (click)="deleteTask(item.hashId)" class="delete-btn set-delete-btn d-inline-flex align-items-center" style="color: black;">
+                                <div><i class="fa fa-trash-o" aria-hidden="true" style="align-self: start; margin-right: 5px;"></i></div>
+                                
+                                Delete task
+                            </a>
                         </div>
                         <div class="">
                             <p class="d-inline-flex p-1">Task description: {{item.taskDescription}}</p>
