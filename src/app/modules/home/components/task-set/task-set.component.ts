@@ -25,6 +25,7 @@ export class TaskSetComponent {
   public taskDescription: string = "";
   public taskName: string = "";
   public taskCategory: string = "";
+  
 
   //=================
   //  DATA INPUT
@@ -130,6 +131,27 @@ export class TaskSetComponent {
   {
     var date = new Date().toLocaleString();
     return ( date + taskName);
+  }
+
+  public TimeToEndTask(taskDate1: Date)
+  {
+    var taskDate = new Date(taskDate1);
+    var today = new Date();
+    //var today = new Date().toLocaleDateString('en-CA');
+    if(Math.floor((taskDate.getTime() - today.getTime()) / 1000 / 60 / 60 / 24) + 1 === 0)
+    {
+      return "Your task ends today!";
+    }
+    else if(taskDate > today)
+    {
+      var daysToEnd =  Math.floor((taskDate.getTime() - today.getTime()) / 1000 / 60 / 60 / 24)+1;
+      return "You have "+daysToEnd+" day(s) to complete this task!";
+    }
+    else{
+      var daysToEnd =  Math.floor((today.getTime() - taskDate.getTime()) / 1000 / 60 / 60 / 24) +1;
+      return "The 'time to end' this task passed "+daysToEnd+" day(s) ago!";
+    }
+
   }
 
 }
