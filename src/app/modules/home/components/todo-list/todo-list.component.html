@@ -3,7 +3,7 @@
         <app-lateral-menu #filter [tasks]="TasksList" [data]="DataList"></app-lateral-menu>
     </div>
     <div style="width: 75%; height: 100%; margin-left: 15px;">
-        <app-task-set [tasks]="TasksList" [dataCategories]="filter.nonTaskCategories" [data]="DataList" [filter]="filter.filterType" [filtredData]="filter.filtredData" [filtredTasks]="filter.filtredTasks" [taskCategories]="filter.categories"></app-task-set>
+        <app-task-set [taskDatesFilter]="filter.taskDatesFilter" [tasks]="TasksList" [dataCategories]="filter.nonTaskCategories" [data]="DataList" [filter]="filter.filterType" [filtredData]="filter.filtredData" [filtredTasks]="filter.filtredTasks" [taskCategories]="filter.categories"></app-task-set>
     </div>
        
 </div>

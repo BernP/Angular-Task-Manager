@@ -22,14 +22,13 @@
               </div>
             </a>
             <div class="collapse show" id="collapseExample">
-              <ul class="ul-menu list-unstyled fw-normal pb-1 small ">
-                <li class="li-menu"><a (click)="SelectFilterType('taskCategory', 'Tasks / Dates / All dates')" href="#" class="link-dark rounded li-menu-a">All</a></li>
-                <li class="li-menu"><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Today')" href="#" class="link-dark rounded li-menu-a">Today</a></li>
-                <li class="li-menu"><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Over Timed')" href="#" class="link-dark rounded  li-menu-a">Over timed</a></li>
-                <li class="li-menu"><a (click)="SelectFilterType('taskDate', 'Tasks / Dates / Calendar')" href="#" class="link-dark rounded  li-menu-a">Calendar</a></li>
-                
-                
+              <ul class="ul-menu list-unstyled fw-normal pb-1 small">
+                <li  class="li-menu" *ngFor="let item of taskDatesFilter; let i = index">
+                  <a (click)="SelectFilterType('taskDate', 'Tasks / Dates / '+item.name)" href="#" class="link-dark rounded li-menu-a">{{item.name}}  ({{item.amount}})</a>
+                </li>
+
               </ul>
+
             </div>
           </li>
           <li class="mb-1">

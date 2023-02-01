@@ -13,6 +13,7 @@ export class LateralMenuComponent{
   @Input() tasks: Array<Tasks> = [];
   @Input() data: Array<Data> = [];
   public categories:  Array<any> = [{name: 'Personal', amount: 0}, {name: 'Work', amount: 0}, {name: 'Studie', amount: 0}];
+  public taskDatesFilter:  Array<any> = [{name: 'All dates', amount: 0}, {name: 'Today', amount: 0}, {name: 'Over Timed', amount: 0}, {name: 'This week', amount: 0}];
   public nonTaskCategories:  Array<any> = [{name: 'All', amount: 0}, {name: 'Phone numbers', amount: 0}, {name: 'Passwords tips', amount: 0}];
   public whatToSearchFor: string = "";
   public newItemToAdd: string = "";
@@ -50,18 +51,6 @@ export class LateralMenuComponent{
     
   }
 
-  //==========================
-  //  Find occorences CATEGORY 
-  //==========================
-  public FindTaskAmount(choosenCat: string){
-    for(let i = 0; i < this.categories.length; i++)
-    {
-      if(choosenCat === this.categories[i].name)
-      {
-        return this.categories[i].amount.toString();
-      }
-    }
-  }
 
 
   //==========================
@@ -69,7 +58,7 @@ export class LateralMenuComponent{
   //==========================
   
   public deleteCategory(event: number, type: number){
-    let cf = confirm("You sure to delete this category?")
+    let cf = confirm("Are you sure to delete this category?")
     if(cf){
       if(type == 1)
       {

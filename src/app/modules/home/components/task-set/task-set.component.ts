@@ -16,6 +16,7 @@ export class TaskSetComponent {
   @Input() filtredTasks: Array<Tasks> = [];
   @Input() filtredData: Array<Data> = [];
   @Input() dataCategories: any;
+  @Input() taskDatesFilter: any;
 
 
   //=================
@@ -39,6 +40,8 @@ export class TaskSetComponent {
 
       this.tasks.push({taskName: this.taskName, taskDescription: this.taskDescription, date: this.date, category: this.taskCategory, hashId: this.CreateHashId(this.taskName)})
 
+      var deltaDay = this.GetDeltaTime(new Date(this.date));
+
       for(let i = 0; i < this.taskCategories.length; i++)
       { 
         if(this.taskCategory.includes(this.taskCategories[i].name))
@@ -47,6 +50,16 @@ export class TaskSetComponent {
           break;
         }
       }
+      //Index: 0 = all dates
+      this.taskDatesFilter[0].amount++;
+      if(deltaDay === 0)
+      {
+        this.taskDatesFilter[1].amount++;
+      }
+      else if(deltaDay < 0) this.taskDatesFilter[2].amount++;
+      else if(new Date(this.date).getMonth() === new Date().getMonth()) this.taskDatesFilter[3].amount++;
+      //THIS IS WRONG, but is a test
+
   }
 
   public AddData()
@@ -70,16 +83,25 @@ export class TaskSetComponent {
       this.filtredTasks = this.tasks;
     }
   }
+
+
+
   public deleteTask(taskIdToDelete: string)
   {
+    var deltaDay = 0;
+
+    //TASK LIST
     for(let i = 0; i < this.tasks.length; i++)
     {
       if((this.tasks[i].hashId).localeCompare(taskIdToDelete) === 0)
       {
+        deltaDay = this.GetDeltaTime(new Date(this.tasks[i].date));
         this.tasks.splice(i, 1);
+        
         break;
       }
     }
+    //FILTRED TASK LIST
     for(let i = 0; i < this.filtredTasks.length; i++)
     {
       if((this.filtredTasks[i].hashId).localeCompare(taskIdToDelete) === 0)
@@ -88,6 +110,7 @@ export class TaskSetComponent {
         break;
       }
     }
+    //TASK CATEGORIES
     for(let i = 0; i < this.taskCategories.length; i++)
     { 
       if(this.taskCategory.includes(this.taskCategories[i].name))
@@ -96,6 +119,10 @@ export class TaskSetComponent {
         break;
       }
     }
+    //TASK DATES
+    this.taskDatesFilter[0].amount--;
+    if(deltaDay === 0) this.taskDatesFilter[1].amount--;
+    if(deltaDay < 0) this.taskDatesFilter[2].amount--;
     
   }
 
@@ -133,27 +160,39 @@ export class TaskSetComponent {
     return ( date + taskName);
   }
 
-  public TimeToEndTask(taskDate1: Date)
+  public TimeToEndTask(taskDate: Date)
   {
-    var taskDate = new Date(taskDate1);
-    var today = new Date();
-    //var today = new Date().toLocaleDateString('en-CA');
-    if(Math.floor((taskDate.getTime() - today.getTime()) / 1000 / 60 / 60 / 24) + 1 === 0)
+    //This function will count how many days left to complete a task or how many days passed to the 'end line'
+    //Input: the day to be compared with today
+    //Output: A string with how many days left/passed to complete a task
+    var deltaDay = this.GetDeltaTime(new Date(taskDate));
+
+
+    if(deltaDay === 0)
     {
       return "Your task ends today!";
     }
-    else if(taskDate > today)
+    else if(deltaDay > 0)
     {
-      var daysToEnd =  Math.floor((taskDate.getTime() - today.getTime()) / 1000 / 60 / 60 / 24)+1;
-      var singleDate = daysToEnd === 1 ? "":"s";
-      return "You have "+daysToEnd+" day" +singleDate+ " left to complete this task!";
+      var singleDate = deltaDay === 1 ? "":"s";
+      return "You have "+deltaDay+" day" +singleDate+ " left to complete this task!";
+
     }
     else{
-      var daysToEnd =  Math.floor((today.getTime() - taskDate.getTime()) / 1000 / 60 / 60 / 24);
-      var singleDate = daysToEnd === 1 ? "":"s";
-      return "The end line ended "+daysToEnd+" day"+ singleDate +" ago!";
+      deltaDay *= -1;
+
+      var singleDate = deltaDay === 1 ? "":"s";
+      return "The end line ended "+deltaDay+" day"+ singleDate +" ago!";
+
     }
 
+
+  }
+
+  public GetDeltaTime(someDay: Date)
+  {
+    var today = new Date();
+    return Math.floor((someDay.getTime() - today.getTime()) / 1000 / 60 / 60 / 24)+1;
   }
 
 }

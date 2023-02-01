@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { TodoButtonDeleteSelectComponent } from './components/todo-button-delete-select/todo-button-delete-select.component';
 import { LateralMenuComponent } from './components/lateral-menu/lateral-menu.component';
 import { TaskSetComponent } from './components/task-set/task-set.component';
-import { SingleTaskComponent } from './components/single-task/single-task.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -22,8 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TodoButtonDeleteSelectComponent,
     TodoButtonDeleteSelectComponent,
     LateralMenuComponent,
-    TaskSetComponent,
-    SingleTaskComponent
+    TaskSetComponent
   ],
   imports: [
     FormsModule,
