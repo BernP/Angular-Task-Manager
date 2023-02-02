@@ -10,6 +10,7 @@ import { TodoButtonDeleteSelectComponent } from './components/todo-button-delete
 import { LateralMenuComponent } from './components/lateral-menu/lateral-menu.component';
 import { TaskSetComponent } from './components/task-set/task-set.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ItemShowBoxComponent } from './components/item-show-box/item-show-box.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TodoButtonDeleteSelectComponent,
     TodoButtonDeleteSelectComponent,
     LateralMenuComponent,
-    TaskSetComponent
+    TaskSetComponent,
+    ItemShowBoxComponent
   ],
   imports: [
     FormsModule,

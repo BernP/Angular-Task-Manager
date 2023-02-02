@@ -180,14 +180,14 @@ export class LateralMenuComponent{
     let searchResult: Array<Tasks> = [];
     for(let i = 0; i < this.tasks.length; i++)
     {
-      if(this.tasks[i].taskName.includes(searchTerm))
+      if(this.tasks[i].name.includes(searchTerm))
       {
         searchResult.push(this.tasks[i]);
 
       }
       else
       {
-        if(this.tasks[i].taskDescription.includes(searchTerm))
+        if(this.tasks[i].info.includes(searchTerm))
         {
           searchResult.push(this.tasks[i]);
 

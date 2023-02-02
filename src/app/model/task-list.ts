@@ -4,16 +4,16 @@ export interface TaskList {
 }
 
 export interface Tasks {
-    taskName: string,
-    taskDescription: string, 
+    name: string,
+    info: string, 
     date: Date,
     category: string,
     hashId: string
 }
 
 export interface Data {
-    dataName: string,
-    dataInfo: string, 
+    name: string,
+    info: string, 
     category: string,
     hashId: string
 }

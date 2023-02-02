@@ -1,88 +1,23 @@
 import { Component, Input } from '@angular/core';
-import { Tasks, Data } from 'src/app/model/task-list';
-
+import { Data, Tasks } from 'src/app/model/task-list';
 
 @Component({
-  selector: 'app-task-set',
-  templateUrl: './task-set.component.html',
-  styleUrls: ['./task-set.component.scss']
+  selector: 'app-item-show-box',
+  templateUrl: './item-show-box.component.html',
+  styleUrls: ['./item-show-box.component.scss']
 })
-export class TaskSetComponent {
-
+export class ItemShowBoxComponent {
   @Input() tasks: Array<Tasks> = [];
   @Input() data: Array<Data> = [];
   @Input() filter: any;
   @Input() taskCategories: any;
-  @Input() filtredTasks: Array<Tasks> = [];
-  @Input() filtredData: Array<Data> = [];
+  @Input() filtredTasks:  any;
+  @Input() filtredData:  any;
   @Input() dataCategories: any;
   @Input() taskDatesFilter: any;
+  @Input() dataCategory: any;
+  @Input() taskCategory: any;
 
-
-  //=================
-  //  TASK INPUT
-  //=================
-  public date: Date = new Date();
-  public taskDescription: string = "";
-  public taskName: string = "";
-  public taskCategory: string = "";
-  
-
-  //=================
-  //  DATA INPUT
-  //=================
-  public dataName: string ="";
-  public dataInfo: string = "";
-  public dataCategory: string = "";
-
-  public AddTask()
-  {
-
-      this.tasks.push({name: this.taskName, info: this.taskDescription, date: this.date, category: this.taskCategory, hashId: this.CreateHashId(this.taskName)})
-
-      var deltaDay = this.GetDeltaTime(new Date(this.date));
-
-      for(let i = 0; i < this.taskCategories.length; i++)
-      { 
-        if(this.taskCategory.includes(this.taskCategories[i].name))
-        {
-          this.taskCategories[i].amount++;
-          break;
-        }
-      }
-      //Index: 0 = all dates
-      this.taskDatesFilter[0].amount++;
-      if(deltaDay === 0)
-      {
-        this.taskDatesFilter[1].amount++;
-      }
-      else if(deltaDay < 0) this.taskDatesFilter[2].amount++;
-      else if(new Date(this.date).getMonth() === new Date().getMonth()) this.taskDatesFilter[3].amount++;
-      //THIS IS WRONG, but is a test
-
-  }
-
-  public AddData()
-  {
-    this.data.push({name: this.dataName, info: this.dataInfo, category:  this.dataCategory, hashId: this.CreateHashId(this.dataName)});
-
-    for(let i = 0; i < this.dataCategories.length; i++)
-      { 
-        if(this.dataCategory.includes(this.dataCategories[i].name))
-        {
-          this.dataCategories[i].amount++;
-          break;
-        }
-      }
-  }
-
-  public reloadInitialPage()
-  {
-    if(this.filter.category == "All" || this.filter.category == "all" )
-    {
-      this.filtredTasks = this.tasks;
-    }
-  }
 
 
 
@@ -152,12 +87,6 @@ export class TaskSetComponent {
         break;
       }
     }
-  }
-
-  public CreateHashId(taskName: string)
-  {
-    var date = new Date().toLocaleString();
-    return ( date + taskName);
   }
 
   public TimeToEndTask(taskDate: Date)

@@ -1,0 +1,47 @@
+<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small rounded collapsed">
+    <li *ngFor="let item of ((filter.type.includes('task') || filter.type.includes('Task'))? filtredTasks: filtredData); let j = index">
+        <button class="p-1 mb-1 btn btn-toggle d-inline-flex align-items-center rounded collapsed" style="width: 100%;" data-bs-toggle="collapse" attr.data-bs-target="{{'#'+'a'+j}}" aria-expanded="false">
+            <div class="d-inline-flex  align-items-center" style="justify-content: space-between; align-content: start;">
+                <div class="task-name-font-size" style="margin-left: 10px; margin-right: 40px;">
+                    
+                    <i class="fa fa-ellipsis-v" style="margin-right: 4px;" aria-hidden="true"></i>
+                    {{item.name}}
+                    
+                    
+                </div>
+
+                
+                
+            </div>
+            
+            <div *ngIf="filter.type.includes('task') || filter.type.includes('Task')" class="font-nunito-light caledar-font-size align-items-center" style="margin-right: 20px;">
+                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                {{item.date}}
+            </div>
+            
+            <div class="font-nunito-light caledar-font-size">
+                <i class="fa fa-folder-o" style="margin-right: 4px;" aria-hidden="true"></i>
+                {{item.category}}
+                
+            </div>
+            
+        </button>
+        <div class="collapse li-content" id="{{'a'+j}}">
+            <div class="font-nunito-light align-items-center d-inline-flex">
+                <div *ngIf="filter.type.includes('task') || filter.type.includes('Task')" style=" margin-right: 25px;">{{TimeToEndTask(item.date)}}</div>
+
+                
+                <a href="#" type="button" (click)="deleteTask(item.hashId)" class="delete-btn set-delete-btn d-inline-flex align-items-center" style="color: black;">
+                    <div><i class="fa fa-trash-o" aria-hidden="true" style="align-self: start; margin-right: 5px;"></i></div>
+                    
+                    Delete task
+                </a>
+            </div>
+            <div class="">
+                <p class="font-nunito d-inline-flex p-1">Information: {{item.info}}</p>
+            </div>
+            
+        </div>
+    </li>
+
+</ul>
