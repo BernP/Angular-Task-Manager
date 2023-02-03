@@ -7,57 +7,54 @@ import { Data, Tasks } from 'src/app/model/task-list';
   styleUrls: ['./item-show-box.component.scss']
 })
 export class ItemShowBoxComponent {
+
+  @Input() PickWeekOfADay: (day: Date) => number;
+
   @Input() tasks: Array<Tasks> = [];
   @Input() data: Array<Data> = [];
   @Input() filter: any;
   @Input() taskCategories: any;
-  @Input() filtredTasks:  any;
+  @Input() filtredTasks: Array<Tasks> = [];
   @Input() filtredData:  any;
   @Input() dataCategories: any;
   @Input() taskDatesFilter: any;
   @Input() dataCategory: any;
-  @Input() taskCategory: any;
+  @Input() taskCategory:  any;
 
 
-
-
-  public deleteTask(taskIdToDelete: string)
+  public DeleteBtn(IdToBeDeleted: string, filter: any)
   {
-    var deltaDay = 0;
+    if(filter.type.includes('task') || filter.type.includes('Task')) this.DeleteTask(IdToBeDeleted)
+    else this.DeleteData(IdToBeDeleted)
+  }
 
+
+  public DeleteTask(taskIdToDelete: string)
+  {
+    
+    var indexToDelete = this.tasks.findIndex(item => { return (item.hashId.localeCompare(taskIdToDelete) === 0)});
+    //var indexFilterToDelete = this.filtredTasks.findIndex(item => { return (item.hashId.localeCompare(taskIdToDelete) === 0)});
+    var itemCategory= this.tasks[indexToDelete].category;
+    var deltaDay  = this.GetDeltaTime(new Date(this.tasks[indexToDelete].date));
+    var itemDate = this.tasks[indexToDelete].date;
+    
     //TASK LIST
-    for(let i = 0; i < this.tasks.length; i++)
-    {
-      if((this.tasks[i].hashId).localeCompare(taskIdToDelete) === 0)
-      {
-        deltaDay = this.GetDeltaTime(new Date(this.tasks[i].date));
-        this.tasks.splice(i, 1);
-        
-        break;
-      }
-    }
+    this.tasks.splice(indexToDelete , 1);
+
+
     //FILTRED TASK LIST
-    for(let i = 0; i < this.filtredTasks.length; i++)
-    {
-      if((this.filtredTasks[i].hashId).localeCompare(taskIdToDelete) === 0)
-      {
-        this.filtredTasks.splice(i, 1);
-        break;
-      }
-    }
+    //this.filtredTasks.splice(indexFilterToDelete , 1);
+
     //TASK CATEGORIES
-    for(let i = 0; i < this.taskCategories.length; i++)
-    { 
-      if(this.taskCategory.includes(this.taskCategories[i].name))
-      {
-        this.taskCategories[i].amount--;
-        break;
-      }
-    }
-    //TASK DATES
+    
+    var indexCategoryToDelete = this.taskCategories.findIndex(item => { return (item.name.includes(itemCategory))});
+    this.taskCategories[indexCategoryToDelete].amount--;
+
+    //TASK DATES: 0 = all days, 1 = Today (variation os time = 0), 2 = Overtimed task (variation of time is negative) and 3 = this week
     this.taskDatesFilter[0].amount--;
     if(deltaDay === 0) this.taskDatesFilter[1].amount--;
-    if(deltaDay < 0) this.taskDatesFilter[2].amount--;
+    else if(deltaDay < 0) this.taskDatesFilter[2].amount--;
+    if(this.PickWeekOfADay(new Date(itemDate)) === this.PickWeekOfADay(new Date())) this.taskDatesFilter[3].amount--;
     
   }
 
@@ -122,6 +119,15 @@ export class ItemShowBoxComponent {
   {
     var today = new Date();
     return Math.floor((someDay.getTime() - today.getTime()) / 1000 / 60 / 60 / 24)+1;
+  }
+
+  public GetDayOfWeekOfAData(day: string)
+  {
+    let dayString = (new Date(day)).toString();
+    let weekDay = dayString[0]+dayString[1]+dayString[2];
+    //let weekDay = dayString[4]+dayString[5]+dayString[6];
+    return weekDay;
+    
   }
 
 }

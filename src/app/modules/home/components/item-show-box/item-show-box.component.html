@@ -13,6 +13,13 @@
                 
                 
             </div>
+
+            <div *ngIf="(filter.type.includes('task') || filter.type.includes('Task')) && filter.category.includes('Week')" 
+                class="font-nunito-light caledar-font-size align-items-center" style="margin-right: 20px;">
+                    <i class="fa fa-sun-o" aria-hidden="true"></i>/
+                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                    {{GetDayOfWeekOfAData(item.date)  }}
+            </div>
             
             <div *ngIf="filter.type.includes('task') || filter.type.includes('Task')" class="font-nunito-light caledar-font-size align-items-center" style="margin-right: 20px;">
                 <i class="fa fa-calendar-o" aria-hidden="true"></i>
@@ -31,10 +38,11 @@
                 <div *ngIf="filter.type.includes('task') || filter.type.includes('Task')" style=" margin-right: 25px;">{{TimeToEndTask(item.date)}}</div>
 
                 
-                <a href="#" type="button" (click)="deleteTask(item.hashId)" class="delete-btn set-delete-btn d-inline-flex align-items-center" style="color: black;">
+                <a href="#" type="button" (click)="DeleteBtn(item.hashId, filter)" class="delete-btn set-delete-btn d-inline-flex align-items-center" style="color: black;">
                     <div><i class="fa fa-trash-o" aria-hidden="true" style="align-self: start; margin-right: 5px;"></i></div>
                     
-                    Delete task
+                    Delete  <div *ngIf="filter.type.includes('task') || filter.type.includes('Task'); else dataString"> Task</div>
+                    <ng-template #dataString>Data</ng-template>  
                 </a>
             </div>
             <div class="">

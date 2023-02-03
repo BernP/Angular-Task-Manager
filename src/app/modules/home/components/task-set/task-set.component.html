@@ -1,105 +1,14 @@
-<h4 class="font-nunito">{{filter.category}} ( {{filtredTasks.length}} )</h4>
+<h4 class="font-nunito d-inline-flex">{{filter.category}}
+    <div *ngIf="filter.type.includes('task') || filter.type.includes('Task'); else dataCount"> ( {{filtredTasks.length}} )</div>
+    <ng-template #dataCount>( {{filtredData.length}} )</ng-template>
+</h4>
 <div class="container font-nunito" style="width: 100%; height: 100%; display: flex; flex-grow: grow">
     <a href="#" data-bs-toggle="modal" data-bs-target="#modal-task" class="link-dark rounded"><div><i class="fa fa-plus-circle" aria-hidden="true"></i> Add task</div></a>
     <a href="#" data-bs-toggle="modal" data-bs-target="#modal-data" class="link-dark rounded" style="margin-left: 20px;"><div><i class="fa fa-plus-circle" aria-hidden="true"></i> Add data</div></a>    
 </div>
 
 <div class="set-component-body font-nunito">
-   
-
-        <app-item-show-box [dataCategory]="dataCategory" [taskCategory]="taskCategory" [taskDatesFilter]="taskDatesFilter" [tasks]="tasks" [dataCategories]="dataCategories"  [filter]="filter" [filtredData]="filtredData" [filtredTasks]="filtredTasks" [taskCategories]="taskCategories"></app-item-show-box>
-        
-        <!--
-        <div *ngIf="filter.type.includes('task') || filter.type.includes('Task'); else data_content">
-
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small rounded collapsed">
-                <li *ngFor="let item of filtredTasks; let j = index">
-                    <button class="p-1 mb-1 btn btn-toggle d-inline-flex align-items-center rounded collapsed" style="width: 100%;" data-bs-toggle="collapse" attr.data-bs-target="{{'#'+'a'+j}}" aria-expanded="false">
-                        <div class="d-inline-flex  align-items-center" style="justify-content: space-between; align-content: start;">
-                            <div class="task-name-font-size" style="margin-left: 10px; margin-right: 40px;">
-                                
-                                <i class="fa fa-ellipsis-v" style="margin-right: 4px;" aria-hidden="true"></i>
-                                {{item.taskName}}
-                                
-                                
-                            </div>
-    
-                            
-                            
-                        </div>
-                        
-                        <div class="font-nunito-light caledar-font-size align-items-center" style="margin-right: 20px;">
-                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                            {{item.date}}
-                        </div>
-                        
-                        <div class="font-nunito-light caledar-font-size">
-                            <i class="fa fa-folder-o" style="margin-right: 4px;" aria-hidden="true"></i>
-                            {{item.category}}
-                            
-                        </div>
-                        
-                    </button>
-                    <div class="collapse li-content" id="{{'a'+j}}">
-                        <div class="font-nunito-light align-items-center d-inline-flex">
-                            <div style=" margin-right: 25px;">{{TimeToEndTask(item.date)}}</div>
-
-                            
-                            <a href="#" type="button" (click)="deleteTask(item.hashId)" class="delete-btn set-delete-btn d-inline-flex align-items-center" style="color: black;">
-                                <div><i class="fa fa-trash-o" aria-hidden="true" style="align-self: start; margin-right: 5px;"></i></div>
-                                
-                                Delete task
-                            </a>
-                        </div>
-                        <div class="">
-                            <p class="font-nunito d-inline-flex p-1">Task description: {{item.taskDescription}}</p>
-                        </div>
-                        
-                    </div>
-                </li>
-
-            </ul>
-           
-
-
-        
-        
-    </div>
-     
-    <ng-template #data_content >
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small rounded collapsed font-nunito">
-            <li *ngFor="let item of filtredData; let j = index">
-                <button class="p-1 mb-1 btn btn-toggle d-inline-flex align-items-center rounded collapsed" style="width: 100%;" data-bs-toggle="collapse" attr.data-bs-target="{{'#'+ 'a'+j}}" aria-expanded="false">
-                    <div class="d-inline-flex  align-items-center" style="justify-content: space-between; align-content: start;">
-                        <i class="fa fa-ellipsis-v" style="margin-right: 4px;" aria-hidden="true"></i>
-                        {{item.dataName}}
-                    </div>
-                    <div class="font-nunito-light caledar-font-size">
-                        <i class="fa fa-folder-o" style="margin-right: 4px;" aria-hidden="true"></i>
-                        {{item.category}}
-                        
-                    </div>
-                </button>
-                <div class="collapse li-content" id="{{'a'+j}}">
-                    <div style="display: flex; flex-grow: grow" class="flexbox" style="margin-top: 10px; justify-content: space-between;">
-                        <div class="font-nunito-light align-items-center d-inline-flex">
-                            <a href="#" (click)="DeleteData(item.hashId)"  class="delete-btn set-delete-btn d-inline-flex align-items-center" style="color: black;">
-                                <div><i class="fa fa-trash-o" aria-hidden="true" style="align-self: start; margin-right: 5px;"></i></div>
-                                Delete data
-                            </a>
-                        </div>
-                        
-                    </div>
-                    <div class="">
-                        <p class="font-nunito d-inline-flex p-1">Information: {{item.dataInfo}}</p>
-                    </div>
-                    
-                </div>
-            </li>
-
-        </ul>
-    </ng-template>
-    -->
+   <app-item-show-box [PickWeekOfADay]="PickWeekOfADay" [dataCategory]="dataCategory" [taskCategory]="taskCategory" [taskDatesFilter]="taskDatesFilter" [tasks]="tasks" [dataCategories]="dataCategories"  [filter]="filter" [filtredData]="filtredData" [filtredTasks]="filtredTasks" [taskCategories]="taskCategories"></app-item-show-box>
 </div>
 
 
@@ -177,7 +86,7 @@
                 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" (click)="AddData(); reloadInitialPage()" data-bs-dismiss="modal"><i class="fa fa-plus-square" aria-hidden="true"></i> Add</button>
+              <button type="button" class="btn btn-primary" (click)="AddData()" data-bs-dismiss="modal"><i class="fa fa-plus-square" aria-hidden="true"></i> Add</button>
             </div>
         </div>
     </div>

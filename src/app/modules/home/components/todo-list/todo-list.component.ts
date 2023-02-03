@@ -15,29 +15,22 @@ export class TodoListComponent {
   ngOnInit(): void{
 
   }
-  public setEmit(event: string){
-    this.taskList.push({task: event, checked: false});
-    
-  }
-  public deleteItem(event: number){
-    this.taskList.splice(event, 1);
-  }
-  public deleteAll(){
-    const confirm = window.confirm("You are sure?");
-    if(confirm)
-    {
-      this.taskList = [];
-    }
-    
-  }
-  public deleteSelected(){
-    //for(let i = 0; i < this.taskList.length; i++)
-    let index = 0;
-    while(index < this.taskList.length)
-    {
-      if(this.taskList[index].checked) this.taskList.splice(index, 1);
-      else index++;
-    }
+
+  public PickWeekOfADay = (day: Date): number => 
+  {
+    var daysOfWeekArr = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const t = 24 * 60 * 60 * 1000;
+    var currentDate = new Date();
+    var startDate = new Date(currentDate.getFullYear(), 0, 1);
+    console.log(startDate);
+    console.log(day);
+    var days = Math.floor((day.getTime() - startDate.getTime() + 2*t) /
+        (t));
+         
+    var weekNumber = Math.ceil(days / 7);
+    console.log(weekNumber);
+    return weekNumber;
+
   }
 
 }
