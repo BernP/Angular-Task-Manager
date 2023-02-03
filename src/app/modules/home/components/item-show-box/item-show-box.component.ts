@@ -9,6 +9,8 @@ import { Data, Tasks } from 'src/app/model/task-list';
 export class ItemShowBoxComponent {
 
   @Input() PickWeekOfADay: (day: Date) => number;
+  @Input() FilterTask: () => void;
+  @Input() FilterData: () => void;
 
   @Input() tasks: Array<Tasks> = [];
   @Input() data: Array<Data> = [];
@@ -55,7 +57,7 @@ export class ItemShowBoxComponent {
     if(deltaDay === 0) this.taskDatesFilter[1].amount--;
     else if(deltaDay < 0) this.taskDatesFilter[2].amount--;
     if(this.PickWeekOfADay(new Date(itemDate)) === this.PickWeekOfADay(new Date())) this.taskDatesFilter[3].amount--;
-    
+    this.FilterTask();
   }
 
   public DeleteData(dataIdToDelete: string)
@@ -84,6 +86,7 @@ export class ItemShowBoxComponent {
         break;
       }
     }
+    
   }
 
   public TimeToEndTask(taskDate: Date)

@@ -14,10 +14,10 @@
                 
             </div>
 
+            
             <div *ngIf="(filter.type.includes('task') || filter.type.includes('Task')) && filter.category.includes('Week')" 
                 class="font-nunito-light caledar-font-size align-items-center" style="margin-right: 20px;">
-                    <i class="fa fa-sun-o" aria-hidden="true"></i>/
-                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                    <i class="fa fa-sun-o" aria-hidden="true"></i>
                     {{GetDayOfWeekOfAData(item.date)  }}
             </div>
             
