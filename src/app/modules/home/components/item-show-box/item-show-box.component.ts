@@ -57,6 +57,7 @@ export class ItemShowBoxComponent {
     if(deltaDay === 0) this.taskDatesFilter[1].amount--;
     else if(deltaDay < 0) this.taskDatesFilter[2].amount--;
     if(this.PickWeekOfADay(new Date(itemDate)) === this.PickWeekOfADay(new Date())) this.taskDatesFilter[3].amount--;
+    localStorage.setItem('localStorageTaskList', JSON.stringify(this.tasks));
     this.FilterTask();
   }
 
@@ -78,6 +79,7 @@ export class ItemShowBoxComponent {
     var indexAll = this.dataCategories.findIndex(item => { return (item.name.includes("All") || item.name.includes("all"))});
     this.dataCategories[indexAll].amount--;
 
+    localStorage.setItem('localStorageDataList', JSON.stringify(this.data));
     this.FilterData();
     
   }

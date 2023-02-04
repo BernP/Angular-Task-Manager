@@ -76,7 +76,8 @@ export class TaskSetComponent {
       this.taskName = "";
       this.taskCategory  = "";
       
-
+      localStorage.setItem('localStorageTaskList', JSON.stringify(this.tasks));
+      localStorage.setItem('localStorageTaskDatesCategories', JSON.stringify(this.taskDatesFilter));
   }
 
 
@@ -115,6 +116,8 @@ export class TaskSetComponent {
     this.dataInfo  = "";
     this.dataCategory = "";
     this.FilterData();
+
+    localStorage.setItem('localStorageDataList', JSON.stringify(this.data));
   }
 
   public reloadInitialPage()
@@ -135,6 +138,12 @@ export class TaskSetComponent {
   {
     var today = new Date();
     return Math.floor((someDay.getTime() - today.getTime()) / 1000 / 60 / 60 / 24)+1;
+  }
+
+  public ChangeFilter()
+  {
+    if(this.filter.type.includes("task") || this.filter.type.includes("Task")) this.filter.type = "Data";
+    else this.filter.type = "Task"; 
   }
 
 }

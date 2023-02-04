@@ -8,8 +8,14 @@ import { TaskList, Tasks, Data } from 'src/app/model/task-list';
 })
 export class TodoListComponent {
   public taskList: Array<TaskList>=[{task:"Novo", checked: true}];
-  public TasksList: Array<Tasks>=[];
-  public DataList: Array<Data>=[];
+  public TasksList: Array<Tasks>= (localStorage.getItem("localStorageTaskList") != null) ?
+  JSON.parse(localStorage.getItem('localStorageTaskList') || '{}')
+  :
+  [];
+  public DataList: Array<Data>= (localStorage.getItem("localStorageDataList") != null) ?
+  JSON.parse(localStorage.getItem('localStorageDataList') || '{}')
+  :
+  [];
 
   constructor(){}
   ngOnInit(): void{

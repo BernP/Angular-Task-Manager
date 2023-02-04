@@ -14,11 +14,27 @@ export class LateralMenuComponent{
   @Input() PickWeekOfADay: (day: Date) => number;
   @Input() IsTheSameWeek: (dayOne: Date, dayTwo: Date) => boolean;
 
-  @Input() tasks: Array<Tasks> = [];
-  @Input() data: Array<Data> = [];
-  public categories:  Array<any> = [{name: 'Personal', amount: 0}, {name: 'Work', amount: 0}, {name: 'Studie', amount: 0}];
-  public taskDatesFilter:  Array<any> = [{name: 'All dates', amount: 0}, {name: 'Today', amount: 0}, {name: 'Over Timed', amount: 0}, {name: 'This Week', amount: 0}];
-  public nonTaskCategories:  Array<any> = [{name: 'All', amount: 0}, {name: 'Phone numbers', amount: 0}, {name: 'Passwords tips', amount: 0}];
+  @Input() tasks: Array<any> = (localStorage.getItem("localStorageTaskList") != null) ?
+                                    JSON.parse(localStorage.getItem('localStorageTaskList') || '{}')
+                                    :
+                                    [];
+  @Input() data: Array<any> = (localStorage.getItem("localStorageDataList") != null) ?
+                                    JSON.parse(localStorage.getItem('localStorageDataList') || '{}')
+                                    :
+                                    [];
+  public categories:  Array<any> = (localStorage.getItem("localStorageTaskCategories") != null) ?
+                                    JSON.parse(localStorage.getItem('localStorageTaskCategories') || '{}')
+                                    :
+                                    [{name: 'Personal', amount: 0}, {name: 'Work', amount: 0}, {name: 'Studie', amount: 0}];
+
+  public taskDatesFilter:  Array<any> = (localStorage.getItem("localStorageTaskDatesCategories") != null) ?
+                                    JSON.parse(localStorage.getItem('localStorageTaskDatesCategories') || '{}')
+                                    :
+                                    [{name: 'All dates', amount: 0}, {name: 'Today', amount: 0}, {name: 'Over Timed', amount: 0}, {name: 'This Week', amount: 0}];
+  public nonTaskCategories:  Array<any> = (localStorage.getItem("localStorageDataCategories") != null) ?
+                                    JSON.parse(localStorage.getItem('localStorageDataCategories') || '{}')
+                                    :
+                                    [{name: 'All', amount: 0}, {name: 'Phone numbers', amount: 0}, {name: 'Passwords tips', amount: 0}];
   public whatToSearchFor: string = "";
   public newItemToAdd: string = "";
   public whereAdd: number = 0;
@@ -64,10 +80,13 @@ export class LateralMenuComponent{
       if(type == 1)
       {
         this.categories.splice(event, 1);
+        localStorage.setItem('localStorageTaskCategories', JSON.stringify(this.categories));
       }
       else
       {
         this.nonTaskCategories.splice(event, 1);
+        localStorage.setItem('localStorageDataCategories', JSON.stringify(this.nonTaskCategories));
+        
       }
       
     }
@@ -96,9 +115,11 @@ export class LateralMenuComponent{
     if(this.whereAdd == 1)
     {
       this.categories.push({name: this.newItemToAdd, amount: 0});
+      localStorage.setItem('localStorageTaskCategories', JSON.stringify(this.categories));
     }
     else{
       this.nonTaskCategories.push({name: this.newItemToAdd, amount: 0});
+      localStorage.setItem('localStorageDataCategories', JSON.stringify(this.nonTaskCategories));
     }
     
     this.newItemToAdd = "";
@@ -208,6 +229,26 @@ export class LateralMenuComponent{
         }
       }
     }
+
+    let searchDataResult: Array<Data> = [];
+    for(let i = 0; i < this.data.length; i++)
+    {
+      if(this.data[i].name.includes(searchTerm))
+      {
+        searchDataResult.push(this.data[i]);
+
+      }
+      else
+      {
+        if(this.data[i].info.includes(searchTerm))
+        {
+          searchDataResult.push(this.data[i]);
+
+        }
+      }
+    }
+
+    this.filtredData = searchDataResult;
     this.filtredTasks = searchResult;
     this.whatToSearchFor = '';
     this.filterType.category = "Search results for '"+searchTerm+"'";
