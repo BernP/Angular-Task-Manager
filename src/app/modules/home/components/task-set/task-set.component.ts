@@ -78,6 +78,7 @@ export class TaskSetComponent {
       
       localStorage.setItem('localStorageTaskList', JSON.stringify(this.tasks));
       localStorage.setItem('localStorageTaskDatesCategories', JSON.stringify(this.taskDatesFilter));
+      localStorage.setItem('localStorageTaskCategories', JSON.stringify(this.taskCategories));
   }
 
 
@@ -118,6 +119,7 @@ export class TaskSetComponent {
     this.FilterData();
 
     localStorage.setItem('localStorageDataList', JSON.stringify(this.data));
+    localStorage.setItem('localStorageDataCategories', JSON.stringify(this.dataCategories));
   }
 
   public reloadInitialPage()
