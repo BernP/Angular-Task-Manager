@@ -12,6 +12,7 @@ import { Tasks, Data } from 'src/app/model/task-list';
 export class LateralMenuComponent{
 
   @Input() PickWeekOfADay: (day: Date) => number;
+  @Input() IsTheSameWeek: (dayOne: Date, dayTwo: Date) => boolean;
 
   @Input() tasks: Array<Tasks> = [];
   @Input() data: Array<Data> = [];
@@ -117,10 +118,12 @@ export class LateralMenuComponent{
     }
     if(this.filterType.type.localeCompare("taskDate") === 0 && this.filterType.category.includes("Week"))
     {
-      var thisWeekNumber = this.PickWeekOfADay(new Date());
+      //var thisWeekNumber = this.PickWeekOfADay(new Date());
       for(let i = 0; i < this.tasks.length; i++)
       {
-        if(this.PickWeekOfADay(new Date(this.tasks[i].date)) === thisWeekNumber)
+        //if(this.PickWeekOfADay(new Date(this.tasks[i].date)) === thisWeekNumber)
+        
+        if(this.IsTheSameWeek(new Date(this.tasks[i].date), new Date()))
         {
           aux.push(this.tasks[i]);
         }
@@ -160,12 +163,16 @@ export class LateralMenuComponent{
   //==========================
   public FilterData = (): void =>{
     let aux: Array<Data> = [];
+
     
     if(this.filterType.category.includes("all") || this.filterType.category.includes("All"))
     {
       this.filtredData = this.data;
+
       return;
     }
+
+
 
     for(let i = 0; i < this.data.length; i++)
     {

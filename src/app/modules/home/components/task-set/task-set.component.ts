@@ -21,6 +21,7 @@ export class TaskSetComponent {
   @Input() taskDatesFilter: any;
 
   @Input() PickWeekOfADay: (day: Date) => number;
+  @Input() IsTheSameWeek: (dayOne: Date, dayTwo: Date) => boolean;
   @Input() FilterTask: () => void;
   @Input() FilterData: () => void;
   
@@ -64,7 +65,11 @@ export class TaskSetComponent {
         this.taskDatesFilter[1].amount++;
       }
       else if(deltaDay < 0) this.taskDatesFilter[2].amount++;
-      if( this.PickWeekOfADay(new Date(this.date))  === this.PickWeekOfADay(new Date()) ) this.taskDatesFilter[3].amount++;
+      if(this.IsTheSameWeek(new Date(this.date), new Date())) this.taskDatesFilter[3].amount++;
+      //if( this.PickWeekOfADay(new Date(this.date))  === this.PickWeekOfADay(new Date()) ) this.taskDatesFilter[3].amount++;
+      
+      
+      
       this.FilterTask();
       /**/
       this.taskDescription = "";
@@ -88,6 +93,23 @@ export class TaskSetComponent {
           break;
         }
       }
+
+
+      if(!this.dataCategory.includes("all") && !this.dataCategory.includes("All"))
+      {
+        for(let i = 0; i < this.dataCategories.length; i++)
+        { 
+
+          if(this.dataCategories[i].name.includes("All") || this.dataCategories[i].name.includes("all"))
+          {
+            
+            this.dataCategories[i].amount++;
+            break;
+          }
+        }
+
+      }
+      
 
     this.dataName = "";
     this.dataInfo  = "";

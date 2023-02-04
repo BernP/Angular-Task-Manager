@@ -62,30 +62,23 @@ export class ItemShowBoxComponent {
 
   public DeleteData(dataIdToDelete: string)
   {
-    for(let i = 0; i < this.tasks.length; i++)
+
+    var indexToDelete = this.data.findIndex(item => { return (item.hashId.localeCompare(dataIdToDelete) === 0)});
+
+    var itemCategory= this.data[indexToDelete].category;
+
+    this.data.splice(indexToDelete , 1);
+
+    if(!itemCategory.includes("All") && !itemCategory.includes("all"))
     {
-      if((this.data[i].hashId).localeCompare(dataIdToDelete) === 0)
-      {
-        this.data.splice(i, 1);
-        break;
-      }
+      var indexCategoryToDelete = this.dataCategories.findIndex(item => { return (item.name.includes(itemCategory))});
+      this.dataCategories[indexCategoryToDelete].amount--;
     }
-    for(let i = 0; i < this.filtredData.length; i++)
-    {
-      if((this.filtredData[i].hashId).localeCompare(dataIdToDelete) === 0)
-      {
-        this.filtredData.splice(i, 1);
-        break;
-      }
-    }
-    for(let i = 0; i < this.dataCategories.length; i++)
-    { 
-      if(this.dataCategory.includes(this.dataCategories[i].name))
-      {
-        this.dataCategories[i].amount--;
-        break;
-      }
-    }
+    
+    var indexAll = this.dataCategories.findIndex(item => { return (item.name.includes("All") || item.name.includes("all"))});
+    this.dataCategories[indexAll].amount--;
+
+    this.FilterData();
     
   }
 
@@ -128,7 +121,6 @@ export class ItemShowBoxComponent {
   {
     let dayString = (new Date(day)).toString();
     let weekDay = dayString[0]+dayString[1]+dayString[2];
-    //let weekDay = dayString[4]+dayString[5]+dayString[6];
     return weekDay;
     
   }
