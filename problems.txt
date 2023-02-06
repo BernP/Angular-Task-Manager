@@ -1,0 +1,4 @@
+1) A ideia é usar data internacional para "qualquer um" usar, mas eu não sei como as pessoas ao redor do mundo contam os dias. Eu conto o dia como hj é dia zero (tenho 0 dias para terminar a task), mas deve ter lugar que conta o dia de hj como 1 dia.
+2) Sem planejamento, fui fazendo sem ter uma ideia certa do que iria fazer e tem várias coisas que deveriam ser feitas diferentes(exemplo: fico passando várias variáveis pelos componente, poderia diminuir isso - talves criar uma classe que contem várias info, importantes)
+3) Não tem sistema de edição da task/data que criou
+4) não da loud no filterList quando abre/refresh

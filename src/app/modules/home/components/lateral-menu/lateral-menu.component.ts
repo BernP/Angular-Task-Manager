@@ -11,17 +11,10 @@ import { Tasks, Data } from 'src/app/model/task-list';
 })
 export class LateralMenuComponent{
 
-  @Input() PickWeekOfADay: (day: Date) => number;
   @Input() IsTheSameWeek: (dayOne: Date, dayTwo: Date) => boolean;
 
-  @Input() tasks: Array<any> = (localStorage.getItem("localStorageTaskList") != null) ?
-                                    JSON.parse(localStorage.getItem('localStorageTaskList') || '{}')
-                                    :
-                                    [];
-  @Input() data: Array<any> = (localStorage.getItem("localStorageDataList") != null) ?
-                                    JSON.parse(localStorage.getItem('localStorageDataList') || '{}')
-                                    :
-                                    [];
+  @Input() tasks: Array<any> = [];
+  @Input() data: Array<any> = [];
   public categories:  Array<any> = (localStorage.getItem("localStorageTaskCategories") != null) ?
                                     JSON.parse(localStorage.getItem('localStorageTaskCategories') || '{}')
                                     :
@@ -140,11 +133,12 @@ export class LateralMenuComponent{
     if(this.filterType.type.localeCompare("taskDate") === 0 && this.filterType.category.includes("Week"))
     {
       //var thisWeekNumber = this.PickWeekOfADay(new Date());
+      var todayDate = new Date();
       for(let i = 0; i < this.tasks.length; i++)
       {
         //if(this.PickWeekOfADay(new Date(this.tasks[i].date)) === thisWeekNumber)
         
-        if(this.IsTheSameWeek(new Date(this.tasks[i].date), new Date()))
+        if(this.IsTheSameWeek(new Date(this.tasks[i].date+"T00:00"), todayDate))
         {
           aux.push(this.tasks[i]);
         }

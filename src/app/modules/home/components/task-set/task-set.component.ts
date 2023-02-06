@@ -20,7 +20,6 @@ export class TaskSetComponent {
   @Input() dataCategories: any;
   @Input() taskDatesFilter: any;
 
-  @Input() PickWeekOfADay: (day: Date) => number;
   @Input() IsTheSameWeek: (dayOne: Date, dayTwo: Date) => boolean;
   @Input() FilterTask: () => void;
   @Input() FilterData: () => void;
@@ -31,28 +30,37 @@ export class TaskSetComponent {
   //  TASK INPUT
   //=================
   public date: Date = new Date();
-  public taskDescription: string = "";
-  public taskName: string = "";
-  public taskCategory: string = "";
+  public taskDescription: string;
+  public taskName: string;
+  public taskCategory: string;
   
 
   //=================
   //  DATA INPUT
   //=================
-  public dataName: string ="";
-  public dataInfo: string = "";
-  public dataCategory: string = "";
+  public dataName: string;
+  public dataInfo: string;
+  public dataCategory: string;
 
   public AddTask()
   {
 
-      this.tasks.push({name: this.taskName, info: this.taskDescription, date: this.date, category: this.taskCategory, hashId: this.CreateHashId(this.taskName)})
+      this.tasks.push(
+      {
+        name: this.taskName,
+        info: this.taskDescription,
+        date: this.date, 
+        category: (this.taskCategory != null && this.taskCategory != '') ? this.taskCategory : "#000NoCategory",
+        hashId: this.CreateHashId(this.taskName)
+      });
 
-      var deltaDay = this.GetDeltaTime(new Date(this.date));
+    
+
+      var deltaDay = this.GetDeltaTime(new Date(this.date+"T00:00"));
 
       for(let i = 0; i < this.taskCategories.length; i++)
       { 
-        if(this.taskCategory.includes(this.taskCategories[i].name))
+        if(this.tasks[this.tasks.length-1].category.includes(this.taskCategories[i].name))
         {
           this.taskCategories[i].amount++;
           break;
@@ -65,7 +73,9 @@ export class TaskSetComponent {
         this.taskDatesFilter[1].amount++;
       }
       else if(deltaDay < 0) this.taskDatesFilter[2].amount++;
-      if(this.IsTheSameWeek(new Date(this.date), new Date())) this.taskDatesFilter[3].amount++;
+      if(this.IsTheSameWeek(new Date(this.date+"T00:00"), new Date())){this.taskDatesFilter[3].amount++; console.log(this.taskDatesFilter[3].amount);} 
+      //console.log(this.IsTheSameWeek(new Date(this.date+"T00:00"), new Date()));
+      //this.IsTheSameWeek(new Date(this.date), new Date())===true
       //if( this.PickWeekOfADay(new Date(this.date))  === this.PickWeekOfADay(new Date()) ) this.taskDatesFilter[3].amount++;
       
       
@@ -85,7 +95,13 @@ export class TaskSetComponent {
 
   public AddData()
   {
-    this.data.push({name: this.dataName, info: this.dataInfo, category:  this.dataCategory, hashId: this.CreateHashId(this.dataName)});
+    this.data.push(
+    {
+      name: this.dataName, 
+      info: this.dataInfo, 
+      category: (this.dataCategory.length>0 && this.dataCategory != '') ?this.dataCategory : "#000NoCategory",
+      hashId: this.CreateHashId(this.dataName)
+    });
 
     for(let i = 0; i < this.dataCategories.length; i++)
       { 

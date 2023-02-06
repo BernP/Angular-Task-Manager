@@ -8,7 +8,7 @@ import { Data, Tasks } from 'src/app/model/task-list';
 })
 export class ItemShowBoxComponent {
 
-  @Input() PickWeekOfADay: (day: Date) => number;
+  @Input() IsTheSameWeek: (dayOne: Date, dayTwo: Date) => boolean;
   @Input() FilterTask: () => void;
   @Input() FilterData: () => void;
 
@@ -36,6 +36,8 @@ export class ItemShowBoxComponent {
     
     var indexToDelete = this.tasks.findIndex(item => { return (item.hashId.localeCompare(taskIdToDelete) === 0)});
     //var indexFilterToDelete = this.filtredTasks.findIndex(item => { return (item.hashId.localeCompare(taskIdToDelete) === 0)});
+    console.log(indexToDelete);
+    console.log(this.tasks);
     var itemCategory= this.tasks[indexToDelete].category;
     var deltaDay  = this.GetDeltaTime(new Date(this.tasks[indexToDelete].date));
     var itemDate = this.tasks[indexToDelete].date;
@@ -49,14 +51,20 @@ export class ItemShowBoxComponent {
 
     //TASK CATEGORIES
     
-    var indexCategoryToDelete = this.taskCategories.findIndex(item => { return (item.name.includes(itemCategory))});
-    this.taskCategories[indexCategoryToDelete].amount--;
+
+    if(itemCategory != '' && itemCategory.length > 0 && itemCategory.localeCompare('#000NoCategory') != 0)
+    {
+      var indexCategoryToDelete = this.taskCategories.findIndex(item => { return (item.name.includes(itemCategory))});
+      this.taskCategories[indexCategoryToDelete].amount--;
+    }
+    
+    localStorage.setItem('localStorageTaskDatesCategories', JSON.stringify(this.taskCategories));
 
     //TASK DATES: 0 = all days, 1 = Today (variation os time = 0), 2 = Overtimed task (variation of time is negative) and 3 = this week
     this.taskDatesFilter[0].amount--;
     if(deltaDay === 0) this.taskDatesFilter[1].amount--;
     else if(deltaDay < 0) this.taskDatesFilter[2].amount--;
-    if(this.PickWeekOfADay(new Date(itemDate)) === this.PickWeekOfADay(new Date())) this.taskDatesFilter[3].amount--;
+    if(this.IsTheSameWeek(new Date(itemDate+"T00:00"), new Date())) this.taskDatesFilter[3].amount--;
     localStorage.setItem('localStorageTaskList', JSON.stringify(this.tasks));
     this.FilterTask();
   }

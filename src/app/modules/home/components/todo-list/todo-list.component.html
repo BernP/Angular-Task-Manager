@@ -1,9 +1,9 @@
 <div class="container" style="width: 100%; height: 100%; display: flex; flex-grow: grow">
     <div style="width: 25%; height: 100%;">
-        <app-lateral-menu #filter [IsTheSameWeek]="IsTheSameWeek" [PickWeekOfADay]="PickWeekOfADay" [tasks]="TasksList" [data]="DataList"></app-lateral-menu>
+        <app-lateral-menu #filter [IsTheSameWeek]="IsTheSameWeek" [tasks]="TasksList" [data]="DataList"></app-lateral-menu>
     </div>
     <div style="width: 75%; height: 100%; margin-left: 15px;">
-        <app-task-set *ngIf="!filter.filterType.type.includes('accont'); else accont" #set [IsTheSameWeek]="IsTheSameWeek" [FilterData]="filter.FilterData" [FilterTask]="filter.FilterTask" [PickWeekOfADay]="PickWeekOfADay" [taskDatesFilter]="filter.taskDatesFilter" [tasks]="TasksList" [dataCategories]="filter.nonTaskCategories" [data]="DataList" [filter]="filter.filterType" [filtredData]="filter.filtredData" [filtredTasks]="filter.filtredTasks" [taskCategories]="filter.categories"></app-task-set>
+        <app-task-set *ngIf="!filter.filterType.type.includes('accont'); else accont" #set [IsTheSameWeek]="IsTheSameWeek" [FilterData]="filter.FilterData" [FilterTask]="filter.FilterTask" [taskDatesFilter]="filter.taskDatesFilter" [tasks]="TasksList" [dataCategories]="filter.nonTaskCategories" [data]="DataList" [filter]="filter.filterType" [filtredData]="filter.filtredData" [filtredTasks]="filter.filtredTasks" [taskCategories]="filter.categories"></app-task-set>
         <ng-template #accont><app-accont></app-accont></ng-template>
     </div>
        
