@@ -1,8 +1,24 @@
 <div style="height: 100%; width: 100%; margin-top: 10px;">
-    <h5>You don't have any content here!</h5>
-    <img src="assets/img/no-data.png" style="width: 60%; 
-                                            height: 45%; margin-left: auto;
+    
+    <div *ngIf="filter.category.includes('Search'); else noContentImg">
+        <img src="assets/img/Shrug-bro-green2.png" style="width: 50%; 
+                                                    height: 50%; 
+                                                    margin-left: auto;
+                                                    margin-right: auto;
+                                                    display: block;
+                                                    margin-top: 20px;">
+        <a style="font-size: 9px; width: auto; margin: auto; display: block;" href="https://storyset.com/people">People illustrations by Storyset</a>
+    </div>
+    <ng-template #noContentImg>
+        <img src="assets/img/no-data-cut.png" style="width: 70%; 
+                                            height: 70%; 
+                                            margin-left: auto;
                                             margin-right: auto;
-                                            display: block;">
+                                            display: block;
+                                            margin-top: 20px;">
+        <a style="font-size: 9px;margin-left: auto; margin-right: auto; display: block;" href="https://storyset.com/people">People illustrations by Storyset</a>
+        
+    </ng-template>
+    
 
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-no-content-page',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./no-content-page.component.scss']
 })
 export class NoContentPageComponent {
-
+  @Input() filter: any;
 }

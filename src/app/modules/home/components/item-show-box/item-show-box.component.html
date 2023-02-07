@@ -52,4 +52,17 @@
         </div>
     </li>
 
+
+
+    <div *ngIf="((filter.type.includes('task') || filter.type.includes('Task'))? filtredTasks.length < 5 : filtredData.length < 5)">
+        <!--
+        <img src="assets/img/Sunny-day-pana-cut.png" style="width: 50%; 
+                                                        height: 50%; 
+                                                        margin-left: auto;
+                                                        margin-right: auto;
+                                                        display: block;
+                                                        margin-top: 50px;">
+            <a style="font-size: 9px; width: auto; margin: auto; display: block; color: black;" href="https://storyset.com/people">People illustrations by Storyset</a>
+        -->
+    </div>
 </ul>

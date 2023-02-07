@@ -207,6 +207,14 @@ export class LateralMenuComponent implements OnInit{
   //==========================
   public Search(searchTerm: string)
   {
+    if(searchTerm.localeCompare("") === 0)
+    {
+      this.filtredData = [];
+      this.filtredTasks = [];
+      this.filterType.category = "Search results for '"+searchTerm+"'";
+      return;
+    }
+
     let searchResult: Array<Tasks> = [];
     for(let i = 0; i < this.tasks.length; i++)
     {
