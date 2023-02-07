@@ -13,7 +13,13 @@
 
 
 <div class="set-component-body font-nunito">
-   <app-item-show-box [data]="data" [IsTheSameWeek]="IsTheSameWeek" [FilterTask]="FilterTask" [FilterData]="FilterData" [dataCategory]="dataCategory" [taskCategory]="taskCategory" [taskDatesFilter]="taskDatesFilter" [tasks]="tasks" [dataCategories]="dataCategories"  [filter]="filter" [filtredData]="filtredData" [filtredTasks]="filtredTasks" [taskCategories]="taskCategories"></app-item-show-box>
+    <div *ngIf="isAnyContentToShow(); else noContentPage">
+        <app-item-show-box [data]="data" [IsTheSameWeek]="IsTheSameWeek" [FilterTask]="FilterTask" [FilterData]="FilterData" [dataCategory]="dataCategory" [taskCategory]="taskCategory" [taskDatesFilter]="taskDatesFilter" [tasks]="tasks" [dataCategories]="dataCategories"  [filter]="filter" [filtredData]="filtredData" [filtredTasks]="filtredTasks" [taskCategories]="taskCategories"></app-item-show-box>
+    </div>
+    <ng-template #noContentPage>
+        <app-no-content-page></app-no-content-page>
+    </ng-template>
+    
     
 
 </div>

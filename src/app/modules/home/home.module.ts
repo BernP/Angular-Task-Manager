@@ -9,6 +9,7 @@ import { TaskSetComponent } from './components/task-set/task-set.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ItemShowBoxComponent } from './components/item-show-box/item-show-box.component';
 import { AccontComponent } from './components/accont/accont.component';
+import { NoContentPageComponent } from './components/no-content-page/no-content-page.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AccontComponent } from './components/accont/accont.component';
     TaskSetComponent,
     ItemShowBoxComponent,
     AccontComponent,
+    NoContentPageComponent,
   ],
   imports: [
     FormsModule,

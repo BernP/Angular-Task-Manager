@@ -164,4 +164,19 @@ export class TaskSetComponent {
     else this.filter.type = "Task"; 
   }
 
+  public isAnyContentToShow()
+  {
+    if(this.filter.type.includes("task") || this.filter.type.includes("Task"))
+    {
+      if(this.filtredTasks.length > 0) return true;
+      return false;
+    }
+    else
+    {
+      if(this.filtredData.length > 0) return true;
+      return false;
+    }
+
+  }
+
 }

@@ -9,7 +9,7 @@ import { Tasks, Data } from 'src/app/model/task-list';
   templateUrl: './lateral-menu.component.html',
   styleUrls: ['./lateral-menu.component.scss']
 })
-export class LateralMenuComponent{
+export class LateralMenuComponent implements OnInit{
 
   @Input() IsTheSameWeek: (dayOne: Date, dayTwo: Date) => boolean;
 
@@ -34,16 +34,17 @@ export class LateralMenuComponent{
   public what = "";
   public filterType = {
     type: "taskDate",
-    category: "All"
+    category: "Tasks / Dates / All dates"
   };
-  public filtredTasks: Array<Tasks> = this.tasks;
+  public filtredTasks: Array<Tasks>;
   public filtredData: Array<Data> = this.data;
 
 
   public isCollapsed = true;
 
-  onChange(event: string) {
-    this.newItemToAdd = event;
+  ngOnInit()
+  {
+    this.FilterTask();
   }
 
   public SelectFilterType(type: string, category: string)
