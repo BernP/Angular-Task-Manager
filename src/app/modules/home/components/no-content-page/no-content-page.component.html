@@ -1,22 +1,19 @@
-<div style="height: 100%; width: 100%; margin-top: 10px;">
+<div class="no-content-page-body">
     
     <div *ngIf="filter.category.includes('Search'); else noContentImg">
-        <img src="assets/img/Shrug-bro-green2.png" style="width: 50%; 
-                                                    height: 50%; 
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    display: block;
-                                                    margin-top: 20px;">
-        <a style="font-size: 9px; width: auto; margin: auto; display: block;" href="https://storyset.com/people">People illustrations by Storyset</a>
+        <img src="assets/img/Shrug-bro-green2.png" class="img-align-center" style="width: 50%; height: 50%;">
+        <div class="reference-align">
+            <a href="https://storyset.com/people">People illustrations by Storyset</a>
+        </div>
     </div>
     <ng-template #noContentImg>
-        <img src="assets/img/no-data-cut.png" style="width: 70%; 
-                                            height: 70%; 
-                                            margin-left: auto;
-                                            margin-right: auto;
-                                            display: block;
-                                            margin-top: 20px;">
-        <a style="font-size: 9px;margin-left: auto; margin-right: auto; display: block;" href="https://storyset.com/people">People illustrations by Storyset</a>
+        <img src="assets/img/no-data-cut.png" class="img-align-center" style="width: 70%; height: 70%;">
+        <div class="reference-align">
+            <a href="https://storyset.com/people">People illustrations by Storyset</a>
+        </div>
+            
+        
+        
         
     </ng-template>
     

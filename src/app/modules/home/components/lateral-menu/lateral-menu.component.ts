@@ -28,8 +28,8 @@ export class LateralMenuComponent implements OnInit{
                                     JSON.parse(localStorage.getItem('localStorageDataCategories') || '{}')
                                     :
                                     [{name: 'All', amount: 0}, {name: 'Phone numbers', amount: 0}, {name: 'Passwords tips', amount: 0}];
-  public whatToSearchFor: string = "";
-  public newItemToAdd: string = "";
+  public searchInput: string = "";
+  public newCategoryInput: string = "";
   public whereAdd: number = 0;
   public what = "";
   public filterType = {
@@ -45,6 +45,36 @@ export class LateralMenuComponent implements OnInit{
   ngOnInit()
   {
     this.FilterTask();
+    this.ReloadTaskDates();
+
+
+  }
+
+  public ReloadTaskDates()
+  {
+    var baseDateArr = [{name: 'All dates', amount: this.tasks.length}, {name: 'Today', amount: 0}, {name: 'Over Timed', amount: 0}, {name: 'This Week', amount: 0}];
+    var today = new Date().toLocaleDateString('en-CA');
+    var todayDate = new Date();
+
+    for(let i = 0; i < this.tasks.length; i++)
+    {
+      if(this.tasks[i].date.toString() < today)
+      {
+        baseDateArr[2].amount++;
+      }
+      if(this.tasks[i].date.toString() === today)
+      {
+        baseDateArr[1].amount++;
+        baseDateArr[3].amount++;
+
+      }
+      else if(this.IsTheSameWeek(new Date(this.tasks[i].date+"T00:00"), todayDate))
+      {
+        baseDateArr[3].amount++;
+      }
+    }
+
+    this.taskDatesFilter = baseDateArr;
   }
 
   public SelectFilterType(type: string, category: string)
@@ -108,15 +138,15 @@ export class LateralMenuComponent implements OnInit{
   public AddCategory(){
     if(this.whereAdd == 1)
     {
-      this.categories.push({name: this.newItemToAdd, amount: 0});
+      this.categories.push({name: this.newCategoryInput, amount: 0});
       localStorage.setItem('localStorageTaskCategories', JSON.stringify(this.categories));
     }
     else{
-      this.nonTaskCategories.push({name: this.newItemToAdd, amount: 0});
+      this.nonTaskCategories.push({name: this.newCategoryInput, amount: 0});
       localStorage.setItem('localStorageDataCategories', JSON.stringify(this.nonTaskCategories));
     }
     
-    this.newItemToAdd = "";
+    this.newCategoryInput = "";
     
   }
 
@@ -203,10 +233,13 @@ export class LateralMenuComponent implements OnInit{
 
 
   //==========================
-  //  SEARCH (FILTER DISPLAYED TASK) BY TERM
+  //  SEARCH BY TERM
   //==========================
   public Search(searchTerm: string)
   {
+
+    // CHECK IF THE SEARCH TERM IS NULL/EMPITY 
+    //  if is null/empity will return without process
     if(searchTerm.localeCompare("") === 0)
     {
       this.filtredData = [];
@@ -215,47 +248,36 @@ export class LateralMenuComponent implements OnInit{
       return;
     }
 
-    let searchResult: Array<Tasks> = [];
-    for(let i = 0; i < this.tasks.length; i++)
+
+    this.filtredData =  this.SearchInSomeList(this.data, searchTerm);
+    this.filtredTasks = this.SearchInSomeList(this.tasks, searchTerm);
+    this.searchInput = '';
+    this.filterType.category = "Search results for '"+searchTerm+"'";
+
+  }
+
+
+  public SearchInSomeList(list: any, searchTerm: string)
+  {
+    let searchResult: Array<any> = [];
+    for(let i = 0; i < list.length; i++)
     {
-      if(this.tasks[i].name.includes(searchTerm))
+      if(list[i].name.includes(searchTerm))
       {
-        searchResult.push(this.tasks[i]);
-
-      }
-      else
-      {
-        if(this.tasks[i].info.includes(searchTerm))
-        {
-          searchResult.push(this.tasks[i]);
-
-        }
-      }
-    }
-
-    let searchDataResult: Array<Data> = [];
-    for(let i = 0; i < this.data.length; i++)
-    {
-      if(this.data[i].name.includes(searchTerm))
-      {
-        searchDataResult.push(this.data[i]);
+        searchResult.push(list[i]);
 
       }
       else
       {
         if(this.data[i].info.includes(searchTerm))
         {
-          searchDataResult.push(this.data[i]);
+          searchResult.push(list[i]);
 
         }
       }
     }
+    return searchResult;
 
-    this.filtredData = searchDataResult;
-    this.filtredTasks = searchResult;
-    this.whatToSearchFor = '';
-    this.filterType.category = "Search results for '"+searchTerm+"'";
-    //this.filterType.type = "";
   }
 
 

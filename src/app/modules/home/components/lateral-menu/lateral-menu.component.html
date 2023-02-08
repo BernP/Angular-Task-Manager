@@ -3,10 +3,10 @@
     
     <div class="input-group" style="width: 100%;">
         <div class="form-outline">
-          <input [(ngModel)]="whatToSearchFor" type="search" id="form1" class="form-control" style="border: 1px; border-color: black; background-color: white;" />
+          <input [(ngModel)]="searchInput" type="search" id="form1" class="form-control" style="border: 1px; border-color: black; background-color: white;" />
           <label class="form-label" for="form1">Search</label>
         </div>
-        <button type="button" class="btn btn-primary" (click)="Search(whatToSearchFor);">
+        <button type="button" class="btn btn-primary" (click)="Search(searchInput);">
             <i class="fa fa-search" aria-hidden="true"></i>
         </button>
     </div>
@@ -96,7 +96,7 @@
           <div class="modal-body container">
               <div class="container mb-3 text-start mt-2 h-100">
                   <div><label for="output-content" id="output-content-label">Category's name: </label> </div>
-                  <input class="form-control" [(ngModel)]="newItemToAdd" #newCategoryInput value="{{newItemToAdd}}" type="text">
+                  <input class="form-control" [(ngModel)]="newCategoryInput"  value="{{newCategoryInput}}" type="text">
               </div>
               
           </div>
