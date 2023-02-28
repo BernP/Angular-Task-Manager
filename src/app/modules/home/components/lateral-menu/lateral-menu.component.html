@@ -3,7 +3,7 @@
     
     <div class="input-group" style="width: 100%;">
         <div class="form-outline">
-          <input [(ngModel)]="searchInput" type="search" id="form1" class="form-control" style="border: 1px; border-color: black; background-color: white;" />
+          <input (keydown.enter)="Search(searchInput);" [(ngModel)]="searchInput" type="search" id="form1" class="form-control" style="border: 1px; border-color: black; background-color: white;" />
           <label class="form-label" for="form1">Search</label>
         </div>
         <button type="button" class="btn btn-primary" (click)="Search(searchInput);">
@@ -71,7 +71,7 @@
           <li class="border-top my-3"></li>
           <li class="mb-1" style="margin-top: 30px;">
             <button class="btn btn-toggle align-items-center rounded collapsed account-btn" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-              Account
+              Settings
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
