@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy:ghdocs":"ng build --output-path docs --base-href /app-todo/"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +24,7 @@
     "@fortawesome/angular-fontawesome": "^0.12.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@ng-bootstrap/ng-bootstrap": "^14.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.3.1",
     "@popperjs/core": "^2.11.6",
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^5.2.3",
@@ -35,14 +36,14 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.1.2",
-    "@angular/cli": "~15.1.2",
+    "@angular/cli": "^15.2.9",
     "@angular/compiler-cli": "^15.1.0",
     "@angular/localize": "^15.1.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.2.0",
+    "karma-coverage": "^1.1.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~4.9.4"
