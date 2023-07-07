@@ -1,3 +1,14 @@
+See in GitHub pages: <a href="https://bernp.github.io/angular-app-todo/">Go to web page </a>
+
+
+
+
+
+
+
+----------------------------------------
+Automatic read me:
+
 # AppTodo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
