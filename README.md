@@ -1,4 +1,4 @@
-See in GitHub pages: <a href="https://bernp.github.io/angular-app-todo/">Go to web page </a>
+See in GitHub pages: <a href="https://bernp.github.io/Angular-Task-Manager/">Go to web page </a>
 
 
 
